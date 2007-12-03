@@ -1,0 +1,144 @@
+BODY {
+	COLOR: #000000
+}
+P {
+	FONT-SIZE: 10pt; FONT-FAMILY: Arial, helvetica, sans-serif; TEXT-ALIGN: justify
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; FONT-FAMILY: Arial, helvetica; TEXT-ALIGN: justify
+}
+UL {
+	FONT-SIZE: 10pt; FONT-FAMILY: Arial, helvetica; TEXT-ALIGN: justify
+}
+TR.claro {
+	BACKGROUND-COLOR: #d6e1ea
+}
+TR.escuro {
+	COLOR: #ffffff; BACKGROUND-COLOR: #80a2bd
+}
+TD.titulo {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: Arial, sans-serif; TEXT-ALIGN: left
+}
+TD {
+	FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: Arial, sans-serif; TEXT-ALIGN: justify
+}
+TD.centro {
+	FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: Arial, sans-serif; TEXT-ALIGN: center
+}
+TD.claro {
+	FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: Arial, sans-serif; BACKGROUND-COLOR: #ccffff; TEXT-ALIGN: left
+}
+TD.escuro {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-FAMILY: Arial, sans-serif; BACKGROUND-COLOR: #99ccff; TEXT-ALIGN: left
+}
+TD.texto_cabecalho {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: verdana, Arial, sans-serif; TEXT-ALIGN: left
+}
+Ax:link {
+	TEXT-DECORATION: none
+}
+Ax:hover {
+	TEXT-DECORATION: underline
+}
+TD.titulo_red {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #990000; FONT-FAMILY: Verdana, Arial, sans-serif; TEXT-ALIGN: left
+}
+BUTTON.preto {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; WIDTH: 60pt; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BACKGROUND-COLOR: #000000
+}
+.bagenda {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #cccccc 0px solid; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-LEFT: #cccccc 0px solid; WIDTH: 60pt; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #5f8aad
+}
+.botao {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #cccccc 0px solid; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-LEFT: #cccccc 0px solid; WIDTH: 60pt; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #000000
+}
+TD.botao {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Arial, sans-serif; TEXT-ALIGN: center; font-color: #000000
+}
+A {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #0000ff; TEXT-DECORATION: underline
+}
+A.comcomp {
+	COLOR: #ffffff; BACKGROUND-COLOR: #000000; TEXT-DECORATION: none
+}
+A.comcomp:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.semcomp {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.semcomp:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.navmes {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.navmes:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.hoje {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.hoje:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.titulo1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-FAMILY: arial,sans-serif; BACKGROUND-COLOR: #000000
+}
+.titulo2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-FAMILY: arial,sans-serif; BACKGROUND-COLOR: #5f8aad
+}
+.linha {
+	FONT-SIZE: 10pt; COLOR: #000000; FONT-FAMILY: arial,sans-serif; BACKGROUND-COLOR: #d6e1ea
+}
+.diaatual {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; FONT-FAMILY: arial,sans-serif; BACKGROUND-COLOR: #5f8aad; TEXT-ALIGN: center
+}
+.semcomp {
+	FONT-SIZE: 10pt; FONT-FAMILY: arial,sans-serif; BACKGROUND-COLOR: #d6e1ea; TEXT-ALIGN: center
+}
+.comcomp {
+	FONT-SIZE: 10pt; FONT-FAMILY: arial, sans-serif; BACKGROUND-COLOR: #000000; TEXT-ALIGN: center
+}
+.titulo_red2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #b00000; FONT-FAMILY: Arial, sans-serif; TEXT-ALIGN: left
+}
+.tabela {
+	BORDER-BOTTOM: #80a2bd 2px solid
+}
+.tabelaMaior {
+	BORDER-RIGHT: #000000 1px outset; BORDER-TOP: #000000 1px outset; BORDER-LEFT: #000000 1px outset; BORDER-BOTTOM: #000000 1px outset; BACKGROUND-COLOR: #ffffff
+}
+A.servicos {
+	COLOR: #ffcfce; TEXT-DECORATION: none
+}
+A.servicos:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.disciplinas {
+	COLOR: #8cbabd; TEXT-DECORATION: none
+}
+A.disciplinas:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.grupos {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.grupos:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.ferramentas {
+	COLOR: #fff5df; TEXT-DECORATION: none
+}
+A.ferramentas:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.tituloExplicacoes {
+	FONT-SIZE: 14px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.butaodireita {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #cccccc 0px solid; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-LEFT: #cccccc 0px solid; WIDTH: 60pt; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #5f8aad
+}

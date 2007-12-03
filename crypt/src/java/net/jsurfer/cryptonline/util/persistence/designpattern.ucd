@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" size="707,547" id="KERNELMarcelloJuniorCryptographyontheWeb0" metadata="nsuml-1.4" initialized="true" showWireOptions="1" scrolledX="32" scrolledY="119">
+  <children xsi:type="editmodel:ClassEditModel" location="585,87" size="215,85" id="KERNELMarcelloJuniorCryptographyontheWeb111" runTimeClassModel="KERNELMarcelloJuniorCryptographyontheWeb117;KERNELMarcelloJuniorCryptographyontheWeb122">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="163,36">
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb117"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb122"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showPublicMethods="true" showPackageMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="35,35" size="182,99" stereotype="client-singleton-factorymethod" id="KERNELMarcelloJuniorCryptographyontheWeb130" runTimeClassModel="KERNELMarcelloJuniorCryptographyontheWeb136;KERNELMarcelloJuniorCryptographyontheWeb134;KERNELMarcelloJuniorCryptographyontheWeb132;KERNELMarcelloJuniorCryptographyontheWeb138;KERNELMarcelloJuniorCryptographyontheWeb131">
+    <children xsi:type="editmodel:CompartmentEditModel" size="150,18">
+      <children xsi:type="editmodel:AttributeEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb131"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="131,18">
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb138"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" connectionRouterKind="Manual" source="//@children.1" target="//@children.2" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="182,30" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-1,91"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showPublicMethods="true" showPackageMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="310,8" size="152,153" stereotype="interface" targetConnections="//@children.1/@sourceConnections.0 //@children.4/@sourceConnections.0" id="KERNELMarcelloJuniorCryptographyontheWeb31" runTimeClassModel="KERNELMarcelloJuniorCryptographyontheWeb33;KERNELMarcelloJuniorCryptographyontheWeb36;KERNELMarcelloJuniorCryptographyontheWeb45;KERNELMarcelloJuniorCryptographyontheWeb50;KERNELMarcelloJuniorCryptographyontheWeb39">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="91,90">
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb33"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb36"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb39"/>
+      <children xsi:type="editmodel:MethodEditModel" location="272,131" id="KERNELMarcelloJuniorCryptographyontheWeb45"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb50"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showPublicMethods="true" showPackageMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="518,234" size="246,117" targetConnections="//@children.4/@sourceConnections.1" id="KERNELMarcelloJuniorCryptographyontheWeb504" packageIndication="3" subTitle="{net.jsurfer.cryptonline.persistence.hibernate}" runTimeClassModel="KERNELMarcelloJuniorCryptographyontheWeb508;KERNELMarcelloJuniorCryptographyontheWeb512;KERNELMarcelloJuniorCryptographyontheWeb510;KERNELMarcelloJuniorCryptographyontheWeb516;KERNELMarcelloJuniorCryptographyontheWeb514;KERNELMarcelloJuniorCryptographyontheWeb506">
+    <children xsi:type="editmodel:CompartmentEditModel" size="146,18">
+      <children xsi:type="editmodel:AttributeEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb508"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="204,36">
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb514"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb516"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showPublicMethods="true" showPackageMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" packageIndication="3"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="57,209" size="355,171" id="KERNELMarcelloJuniorCryptographyontheWeb525" packageIndication="3" subTitle="{net.jsurfer.cryptonline.persistence.hibernate}" runTimeClassModel="KERNELMarcelloJuniorCryptographyontheWeb530;KERNELMarcelloJuniorCryptographyontheWeb537;KERNELMarcelloJuniorCryptographyontheWeb534;KERNELMarcelloJuniorCryptographyontheWeb532;KERNELMarcelloJuniorCryptographyontheWeb540;KERNELMarcelloJuniorCryptographyontheWeb528;KERNELMarcelloJuniorCryptographyontheWeb544;KERNELMarcelloJuniorCryptographyontheWeb527;KERNELMarcelloJuniorCryptographyontheWeb549">
+    <children xsi:type="editmodel:CompartmentEditModel" size="276,18">
+      <children xsi:type="editmodel:AttributeEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb527"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="332,90">
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb534"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb537"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb540"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb544"/>
+      <children xsi:type="editmodel:MethodEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb549"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="KERNELMarcelloJuniorCryptographyontheWeb526" connectionRouterKind="Manual" source="//@children.4" target="//@children.2" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="98,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" connectionRouterKind="Manual" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.1/@children.1" sourceEnd="//@children.4/@sourceConnections.1/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="355,91" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-1,52"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showPublicMethods="true" showPackageMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" packageIndication="3"/>
+  </children>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showPublicMethods="true" showPackageMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showInterfaceStereotype="true" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>

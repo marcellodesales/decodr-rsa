@@ -1,0 +1,210 @@
+BODY {
+	COLOR: #000000
+}
+.side {
+	BACKGROUND: #e6e6e6; COLOR: #000000
+}
+.user {
+	BACKGROUND: #ffffff; COLOR: #000000
+}
+P {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+H1 {
+	FONT-SIZE: 11pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+UL {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+TR.claro {
+	BACKGROUND-COLOR: #d6e1ea
+}
+TR.escuro {
+	COLOR: #ffffff; BACKGROUND-COLOR: #000000
+}
+TD.titulo {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+TD {
+	FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+TD.claro {
+	FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ccffff; TEXT-ALIGN: left
+}
+TD.escuro {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #99ccff; TEXT-ALIGN: left
+}
+TD.texto_cabecalho {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+Ax:link {
+	TEXT-DECORATION: none
+}
+Ax:hover {
+	TEXT-DECORATION: underline
+}
+TD.titulo_red {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #990000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+BUTTON.preto {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; WIDTH: 60pt; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BACKGROUND-COLOR: #000000
+}
+.bagenda {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #cccccc 0px solid; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-LEFT: #cccccc 0px solid; WIDTH: 60pt; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #5f8aad
+}
+.botao {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #cccccc 0px solid; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-LEFT: #cccccc 0px solid; WIDTH: auto; COLOR: #ffffff; MARGIN-RIGHT: 0pt; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #000000
+}
+TD.botao {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Arial, sans-serif; TEXT-ALIGN: center; font-color: #000000
+}
+A.Link {
+	FONT-WEIGHT: normal; FONT-SIZE: 7pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.Link:active {
+	FONT-WEIGHT: normal; FONT-SIZE: 7pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.Link:hover {
+	FONT-WEIGHT: normal; FONT-SIZE: 7pt; COLOR: blue; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+A.Link:link {
+	FONT-WEIGHT: normal; FONT-SIZE: 7pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #0000ff; TEXT-DECORATION: underline
+}
+A.comcomp {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.comcomp:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.semcomp {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A.semcomp:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.navmes {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.navmes:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.hoje {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.hoje:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.titulo1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #000000
+}
+.titulo2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #5f8aad
+}
+.linha {
+	FONT-SIZE: 8pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #d6e1ea
+}
+.diaatual {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #5f8aad; TEXT-ALIGN: center
+}
+.semcomp {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #d6e1ea; TEXT-ALIGN: center
+}
+.comcomp {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #5f8aad; TEXT-ALIGN: center
+}
+.titulo_red2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #b00000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+#header {
+	BORDER-RIGHT: #80a2bd 1px solid; BORDER-TOP: #d6e1ea 1px solid; BORDER-LEFT: #d6e1ea 1px solid; BORDER-BOTTOM: #80a2bd 1px solid; BACKGROUND-COLOR: #bacbda
+}
+#headerSimples {
+	BACKGROUND: #d6e1ea; FONT: bold 11px Verdana, Arial, Helvetica, sans-serif; COLOR: #1f6298
+}
+#headerSimplesFont {
+	BACKGROUND: #999999; FONT: bold 11px Verdana, Arial, Helvetica, sans-serif; COLOR: #ffffff
+}
+#corpoSimples {
+	BACKGROUND: #cccccc; FONT: 10px Verdana, Arial, Helvetica, sans-serif; COLOR: black
+}
+.textoHeader {
+	COLOR: black
+}
+.tabelaSimples {
+	BORDER-RIGHT: #80a2bd 1px solid; COLOR: black; BORDER-BOTTOM: #80a2bd 1px solid
+}
+.tabelaSimples1 {
+	BORDER-RIGHT: #80a2bd 1px solid; COLOR: black
+}
+.tabelaSimples2 {
+	BORDER-TOP: #80a2bd 1px solid
+}
+.tabelaMaior {
+	BORDER-RIGHT: #000000 1px outset; BORDER-TOP: #000000 1px outset; BORDER-LEFT: #000000 1px outset; BORDER-BOTTOM: #000000 1px outset; BACKGROUND-COLOR: #ffffff
+}
+.textoHeader {
+	COLOR: black
+}
+#textoBlue {
+	FONT: bold 12px Verdana, Arial, Helvetica, sans-serif; COLOR: #000000
+}
+.menuFora {
+	FONT: 10px Tahoma,Verdana,Arial,Helvetica; COLOR: black; TEXT-DECORATION: none
+}
+.menuFora:hover {
+	BACKGROUND: none transparent scroll repeat 0% 0%; TEXT-DECORATION: underline
+}
+.textoHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.access {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.msg_preta {
+	FONT-SIZE: 8pt; COLOR: black; FONT-FAMILY: tahoma,helvetica
+}
+.msg_azul {
+	FONT-SIZE: 8pt; COLOR: blue; FONT-FAMILY: tahoma,helvetica
+}
+.msg_vermelha {
+	FONT-SIZE: 8pt; COLOR: red; FONT-FAMILY: tahoma,helvetica
+}
+.msg_laranga {
+	FONT-SIZE: 8pt; COLOR: orange; FONT-FAMILY: tahoma,helvetica
+}
+.msg_verde {
+	FONT-SIZE: 8pt; COLOR: rgb(0,150,0); FONT-FAMILY: tahoma,helvetica
+}
+.tituloExplicacoesCourse {
+	FONT-SIZE: 14px; COLOR: #006666; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.explicacaoCourse {
+	COLOR: #006666; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.tituloExplicacoesGroups {
+	FONT-SIZE: 14px; COLOR: #ffcf63; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.explicacaoGroups {
+	COLOR: #ffcf63; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.tituloExplicacoesServices {
+	FONT-SIZE: 14px; COLOR: #cc3333; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.explicacaoServices {
+	COLOR: #cc3333; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.tituloExplicacoesTools {
+	FONT-SIZE: 14px; COLOR: #357cc4; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.explicacaoTools {
+	COLOR: #357cc4; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+headerSimplesFont {
+	BACKGROUND: #bacbda; FONT: bold 11px Verdana, Arial, Helvetica, sans-serif; COLOR: #1f6298
+}
