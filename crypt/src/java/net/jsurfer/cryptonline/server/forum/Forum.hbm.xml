@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+   "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+	
+	<class name="net.jsurfer.cryptonline.server.forum.ForumPoster" table="poster">
+
+		<id name="id" unsaved-value="null">
+             <column name="OID" not-null="true" sql-type="varchar"/>
+             <generator class="assigned"/>
+		</id>
+		<property name="name">
+		  <column name="name" sql-type="varchar" not-null="true"/>
+        </property>
+        
+		<property name="email">
+		  <column name="email" sql-type="varchar" not-null="true"/>
+		</property>
+		
+		<property name="password">
+		  <column name="password" sql-type="varchar" not-null="true"/>
+		</property>
+		
+		<property name="keyN">
+		  <column name="key_n" sql-type="varchar" not-null="true"/>
+	    </property>
+	    
+		<property name="keyE">
+		  <column name="key_e" sql-type="varchar" not-null="true"/>
+		</property>
+		
+		<property name="keyD">
+		  <column name="key_d" sql-type="varchar" not-null="true"/>
+		</property>
+	</class>
+	
+    <class name="net.jsurfer.cryptonline.server.forum.ForumThread" table="thread">
+
+        <id name="oid" unsaved-value="null">
+             <column name="OID" not-null="true" sql-type="varchar"/>
+             <generator class="assigned"/>
+        </id>
+        
+        <property name="subject">
+          <column name="subject" sql-type="varchar" not-null="true"/>
+        </property>
+        
+        <many-to-one name="creator" class="net.jsurfer.cryptonline.server.forum.ForumPoster" column="poster_id"/>
+    </class>
+
+    <class name="net.jsurfer.cryptonline.server.forum.ForumMessage" table="message">
+
+        <id name="oid" unsaved-value="null">
+             <column name="OID" not-null="true" sql-type="varchar"/>
+             <generator class="assigned"/>
+        </id>
+        
+        <property name="title">
+          <column name="title" sql-type="varchar" not-null="true"/>
+        </property>
+        
+        <property name="text">
+          <column name="text" sql-type="varchar" not-null="true"/>
+        </property>
+        
+        <many-to-one name="thread" class="net.jsurfer.cryptonline.server.forum.ForumThread" column="thread_id"/>
+        <many-to-one name="poster" class="net.jsurfer.cryptonline.server.forum.ForumPoster" column="poster_id"/>
+    </class>
+
+</hibernate-mapping>
