@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package net.jsurfer.cryptonline.server.forum;
 
@@ -22,14 +22,28 @@ public class ForumMessage {
     private String text;
     private ForumThread thread;
     private ForumPoster poster;
-    
+
     /**
-     * 
+     *
      */
     public ForumMessage() {
         this.oid = System.currentTimeMillis() + "";
     }
-    
+
+    /**
+     * @param thread2
+     * @param poster2
+     * @param title2
+     * @param text2
+     */
+    public ForumMessage(ForumThread thread, ForumPoster poster, String title, String text) {
+        this();
+        this.thread = thread;
+        this.poster = poster;
+        this.title = title;
+        this.text = text;
+    }
+
     /**
      * @return the oid
      */
@@ -68,7 +82,7 @@ public class ForumMessage {
     public void setPoster(ForumPoster poster) {
         this.poster = poster;
     }
-    
+
     /**
      * @return the text
      */
@@ -81,28 +95,35 @@ public class ForumMessage {
     public void setText(String text) {
         this.text = text;
     }
-    
+
     /**
      * @return the header
      */
     public String getTitle() {
         return title;
     }
-    
+
     /**
      * @param title the title to set
      */
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
+    public void printAll() {
+        //this.thread.printAll();
+        System.out.println("Message Information");
+        System.out.println(this.title);
+        System.out.println(this.text);
+    }
+
     public static void main(String[] args) {
-        
+
         Session session = null;
          try {
              SessionFactory sessionFactory = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory();
              session =sessionFactory.openSession();
-             
+
              Query q = session.createQuery("from ForumThread where poster_id='1197454553878'");
              System.out.println(q.getQueryString());
 
@@ -110,20 +131,20 @@ public class ForumMessage {
              ForumMessage message = new ForumMessage();
              for(Iterator<ForumThread> it = q.iterate();it.hasNext();){
                  thread = it.next();
-                 thread.printAll();
-                 
-                 message.setText("this is the message to be shown encrypted!");
-                 message.setTitle("This is my secret... Come as you are!!!");
+                 System.out.println(thread);
+
+                 message.setText("Now it is working");
+                 message.setTitle("All about secret messages...");
                  message.setPoster(thread.getCreator());
                  message.setThread(thread);
-                 
+
                  session.save(message);
                  session.flush();
 
                  break;
              }
-             
-             
+
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally{

@@ -1,14 +1,9 @@
-/*
- * Criado em 19/11/2003
- *
- * Marcello Junior Marcello Junior
- * javaman@moomia.com
- */
-package net.jsurfer.cryptonline.persistence;
+package net.jsurfer.cryptonline.util.persistence;
 
-import net.jsurfer.cryptonline.persistence.hibernate.*;
+import net.jsurfer.cryptonline.util.persistence.hibernate.HibernatePersistenceAdapter;
 
 /**
+ * Criado em 19/11/2003
  * PatternBox:Factory+Adapter: "Client" implementation.
  * <ul>
  *   <li>collaborates with objects conforming to the Target interface
@@ -21,7 +16,7 @@ public class PersistenceBrokerFactory {
 
 	private final PersistenceLayer targetDefaultPersistence;
 	
-	private static PersistenceBrokerFactory sInstance = null;
+	private static PersistenceBrokerFactory sInstance = new PersistenceBrokerFactory();
 
 	/** 
 	 * The private constructor of this class is a Singleton constructor
@@ -36,9 +31,6 @@ public class PersistenceBrokerFactory {
 	 * Get the unique instance of this class. 
 	 */
 	public static synchronized PersistenceBrokerFactory getInstance() {
-		if (sInstance == null) {
-			sInstance = new PersistenceBrokerFactory();
-		}
 		return sInstance;
 	}	
 
@@ -47,7 +39,7 @@ public class PersistenceBrokerFactory {
 	 * factory method used in the constructor. 
 	 */
 	public PersistenceLayer getPersistenceLayer() {
-		return this.targetDefaultPersistence;		
+		return this.targetDefaultPersistence;
 	}
 
 }

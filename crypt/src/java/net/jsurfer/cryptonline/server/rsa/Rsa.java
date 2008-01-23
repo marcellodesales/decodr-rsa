@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jsurfer.cryptonline.server.math.AlgebraSingleton;
 
 public class Rsa {
 
     public static final String DELIMITER = "-";
     public static final String LOG_ARROW = "-> ";
-    private static final AlgebraSingleton algebra = AlgebraSingleton.getInstance();
+    private static final Algebra algebra = Algebra.getInstance();
 
     private double p;
     private double q;
@@ -28,28 +27,23 @@ public class Rsa {
 
     private double t, u;
 
-    private List<String> log;
-    private DecimalFormat decimalFormat = new DecimalFormat("0");
-
+    private List<String> log = new ArrayList<String>();;
+    private final static DecimalFormat decimalFormat = new DecimalFormat("0");
+    
     public Rsa() {
-        this.log = new ArrayList<String>();
+    }
+    
+    public void changeKeys() {
         this.setNewPrimes();
         this.setNewPublicKeys();
         this.setNewPrivateKeys();
     }
 
-    public Rsa(double p, double q) {
-        this.log = new ArrayList<String>();
-        this.p = p;
-        this.q = q;
+    public Rsa(int p, int q) {
+        this.p = (double)p;
+        this.q = (double)q;
         this.setNewPublicKeys();
         this.setNewPrivateKeys();
-    }
-
-    public Rsa(double n, double e, double d) {
-        this.n = n;
-        this.e = e;
-        this.d = d;
     }
 
     public double getPublicKey_N() {
@@ -86,8 +80,8 @@ public class Rsa {
         }
 
         this.log.add(Rsa.LOG_ARROW + "Configuring random prime numbers");
-        this.log.add("        P = " + this.decimalFormat.format(this.p));
-        this.log.add("        Q = " + this.decimalFormat.format(this.q));
+        this.log.add("        P = " + decimalFormat.format(this.p));
+        this.log.add("        Q = " + decimalFormat.format(this.q));
     }
 
     private void setNewPublicKeys() {
@@ -96,15 +90,15 @@ public class Rsa {
         this.n = this.p * this.q;
         this.log.add(Rsa.LOG_ARROW + "Calculating public keys");
         this.log.add("          N = P * Q; N = "
-                + this.decimalFormat.format(this.n));
+                + decimalFormat.format(this.n));
 
         this.e = this.getPublicKeyE();
-        this.log.add("          E = " + this.decimalFormat.format(this.e));
+        this.log.add("          E = " + decimalFormat.format(this.e));
         this.log.add("");
 
         this.log.add("       Public Key (N,E) = ("
-                + this.decimalFormat.format(this.n) + " , "
-                + this.decimalFormat.format(this.e) + ")");
+                + decimalFormat.format(this.n) + " , "
+                + decimalFormat.format(this.e) + ")");
         this.log.add("");
     }
 
@@ -113,33 +107,33 @@ public class Rsa {
         this.d = this.getDInverseE();
         this.log.add("");
         this.log.add("      Private Key (N,D) = ("
-                + this.decimalFormat.format(this.n) + ", "
-                + this.decimalFormat.format(this.d) + ");");
+                + decimalFormat.format(this.n) + ", "
+                + decimalFormat.format(this.d) + ");");
     }
 
     private double getPublicKeyE() {
         // FI = (P-1) * (Q-1);
         this.fi = algebra.getEuler(this.p, this.q);
 
-        this.log.add(Rsa.LOG_ARROW + "FI = (P-1) * (Q-1); FI = " + this.decimalFormat.format(this.fi));
+        this.log.add(Rsa.LOG_ARROW + "FI = (P-1) * (Q-1); FI = " + decimalFormat.format(this.fi));
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Calculating (E)");
 
         double aux = 2;
         double mdc = algebra.getMDC(aux, this.fi);
         this.log.add("           While MCD(n >= 2 , "
-                + this.decimalFormat.format(fi) + ") != 1");
+                + decimalFormat.format(fi) + ") != 1");
         while (mdc != 1) {
 
-            this.log.add("           MCD(" + this.decimalFormat.format(aux)
-                    + " , " + this.decimalFormat.format(fi) + ") = "
-                    + this.decimalFormat.format(mdc));
+            this.log.add("           MCD(" + decimalFormat.format(aux)
+                    + " , " + decimalFormat.format(fi) + ") = "
+                    + decimalFormat.format(mdc));
             aux++;
             mdc = algebra.getMDC(aux, this.fi);
         }
-        this.log.add("           MCD(" + this.decimalFormat.format(aux) + " , "
-                + this.decimalFormat.format(fi) + ") = "
-                + this.decimalFormat.format(mdc) + " Correct!");
+        this.log.add("           MCD(" + decimalFormat.format(aux) + " , "
+                + decimalFormat.format(fi) + ") = "
+                + decimalFormat.format(mdc) + " Correct!");
         return aux;
     }
 
@@ -164,13 +158,13 @@ public class Rsa {
 
         while (v3 > 0) {
             this.log.add("");
-            this.log.add("           (" + this.decimalFormat.format(v3)
+            this.log.add("           (" + decimalFormat.format(v3)
                     + " <> 0) , then:");
             qq = algebra.getQuotient(u3, v3);
 
-            this.log.add("             quoc = " + this.decimalFormat.format(u3)
-                    + " / " + this.decimalFormat.format(v3) + " = "
-                    + this.decimalFormat.format(qq));
+            this.log.add("             quoc = " + decimalFormat.format(u3)
+                    + " / " + decimalFormat.format(v3) + " = "
+                    + decimalFormat.format(qq));
 
             t1 = u1 - qq * v1;
             t2 = u2 - qq * v2;
@@ -184,32 +178,32 @@ public class Rsa {
             v3 = t3;
 
             this.log.add("             (t1,t2,t3) = ("
-                    + this.decimalFormat.format(u1) + ","
-                    + this.decimalFormat.format(u2) + ","
-                    + this.decimalFormat.format(u3) + ") - "
-                    + this.decimalFormat.format(qq) + " * ("
-                    + this.decimalFormat.format(v1) + ","
-                    + this.decimalFormat.format(v2) + ","
-                    + this.decimalFormat.format(v3) + ") = ("
-                    + this.decimalFormat.format(t1) + ","
-                    + this.decimalFormat.format(t2) + ","
-                    + this.decimalFormat.format(t3) + ")");
+                    + decimalFormat.format(u1) + ","
+                    + decimalFormat.format(u2) + ","
+                    + decimalFormat.format(u3) + ") - "
+                    + decimalFormat.format(qq) + " * ("
+                    + decimalFormat.format(v1) + ","
+                    + decimalFormat.format(v2) + ","
+                    + decimalFormat.format(v3) + ") = ("
+                    + decimalFormat.format(t1) + ","
+                    + decimalFormat.format(t2) + ","
+                    + decimalFormat.format(t3) + ")");
             this.log.add("             (p1,p2,p3) = ("
-                    + this.decimalFormat.format(v1) + ","
-                    + this.decimalFormat.format(v2) + ","
-                    + this.decimalFormat.format(v3) + ")");
+                    + decimalFormat.format(v1) + ","
+                    + decimalFormat.format(v2) + ","
+                    + decimalFormat.format(v3) + ")");
 
             this.log.add("             (q1,q2,q3) = ("
-                    + this.decimalFormat.format(t1) + ","
-                    + this.decimalFormat.format(t2) + ","
-                    + this.decimalFormat.format(t3) + ")");
+                    + decimalFormat.format(t1) + ","
+                    + decimalFormat.format(t2) + ","
+                    + decimalFormat.format(t3) + ")");
         }
         this.log.add("");
         this.log
                 .add("         q3 is zero(0). Now, verify the value of p2. In case of negative, invert it by summing"
                         + " it with FI. (represent the negative number of z(n) by a positive.)");
         this.log.add("");
-        this.log.add("         u2 = " + this.decimalFormat.format(u2) + ";");
+        this.log.add("         u2 = " + decimalFormat.format(u2) + ";");
 
         vv = u2;
         double inverse;
@@ -217,13 +211,13 @@ public class Rsa {
             inverse = vv + this.fi;
             this.log.add("          Since u2 is negative, we have:");
             this.log.add("          D = u2 + FI; D = "
-                    + this.decimalFormat.format(u2) + " + "
-                    + this.decimalFormat.format(this.fi) + " = "
-                    + this.decimalFormat.format(inverse));
+                    + decimalFormat.format(u2) + " + "
+                    + decimalFormat.format(this.fi) + " = "
+                    + decimalFormat.format(inverse));
         } else {
             inverse = vv;
             this.log.add("         D = u2; D = "
-                    + this.decimalFormat.format(u2));
+                    + decimalFormat.format(u2));
         }
         return inverse;
     }
@@ -300,9 +294,23 @@ public class Rsa {
         RsaSender sender = new RsaSender(origem, rsa);
         sender.printLog();
         System.out.println("Ascii: "+sender.getAsciiMessage());
-        System.out.println("Encrypted: "+sender.getChriptedMessage());
+        System.out.println("Encrypted: "+sender.getEncryptedMessage());
 
-        RsaReceiver receiver = new RsaReceiver(sender.getChriptedMessage(), rsa);
+        RsaReceiver receiver = new RsaReceiver(sender.getEncryptedMessage(), rsa);
         receiver.printLog();
+    }
+
+    /**
+     * @return the p
+     */
+    public double getP() {
+        return p;
+    }
+
+    /**
+     * @return the q
+     */
+    public double getQ() {
+        return q;
     }
 }

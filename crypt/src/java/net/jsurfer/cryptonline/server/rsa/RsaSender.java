@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.jsurfer.cryptonline.server.math.AlgebraSingleton;
 
 public class RsaSender {
 
@@ -25,7 +24,7 @@ public class RsaSender {
 
     private List<String> log;
     private DecimalFormat decimalFormat = new DecimalFormat("0");
-    private static final AlgebraSingleton algebra = AlgebraSingleton
+    private static final Algebra algebra = Algebra
             .getInstance();
 
     /**
@@ -69,7 +68,7 @@ public class RsaSender {
     /**
      * @return the chripted message
      */
-    public String getChriptedMessage() {
+    public String getEncryptedMessage() {
         return this.chriptedMessage;
     }
 

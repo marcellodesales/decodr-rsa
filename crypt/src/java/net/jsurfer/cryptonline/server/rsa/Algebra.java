@@ -4,20 +4,20 @@
  * @author Created by Marcello Junior
  */
 
-package net.jsurfer.cryptonline.server.math;
+package net.jsurfer.cryptonline.server.rsa;
 
-public class AlgebraSingleton {
+public class Algebra {
 
-    private static AlgebraSingleton singleton = null;
+    private static Algebra singleton = null;
 
-    private AlgebraSingleton() {
+    private Algebra() {
     }
 
-    public static AlgebraSingleton getInstance() {
-        if (AlgebraSingleton.singleton == null) {
-            AlgebraSingleton.singleton = new AlgebraSingleton();
+    public static Algebra getInstance() {
+        if (Algebra.singleton == null) {
+            Algebra.singleton = new Algebra();
         }
-        return AlgebraSingleton.singleton;
+        return Algebra.singleton;
     }
 
     /**

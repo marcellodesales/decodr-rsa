@@ -5,17 +5,12 @@
  * Marcello Junior Marcello Junior
  * javaman@moomia.com
  */
-package net.jsurfer.cryptonline.persistence;
+package net.jsurfer.cryptonline.util.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 /**
- * PatternBox:Adapter: "Target" implementation.
- * <ul>
- *   <li>defines the domain-specific interface that Client uses.</li>
- * </ul>
- * 
- * @author <a href="mailto:dirk.ehms@patternbox.com">Dirk Ehms</a>
  * @author Marcello Junior
  * @version 1.2
  * 
@@ -23,20 +18,28 @@ import java.util.Map;
 public interface PersistenceLayer {
 
 	/**
-	 * Saves the current state of the the @param persistentObject
+	 * Saves the current state of the given persistentObject
 	 * in the persistent layer.    
 	 * @param persistentObject: a persistent object mapped to a persistence layer
 	 * @throws PersistenceLayerException
 	 */
 	public void saveObject(Object persistentObject) throws PersistenceLayerException;
-		
+
+    /**
+     * Updates the current state of the given persistent object
+     * in the persistent layer.    
+     * @param persistentObject: a persistent object mapped to a persistence layer
+     * @throws PersistenceLayerException
+     */
+	public void updateObject(Object persistentObject) throws PersistenceLayerException;
+	
 	/**
 	 * Removes the reference of the persistenObject from the persistent 
 	 * layer.
 	 * @param persistentObject
 	 * @throws PersistenceLayerException 
 	 */
-	public boolean deleteObject(Object persistentObject) throws PersistenceLayerException;;
+	public boolean deleteObject(Object persistentObject) throws PersistenceLayerException;
 	
 	
 	/** 
@@ -67,4 +70,14 @@ public interface PersistenceLayer {
 	 * @throws PersistenceLayerException: In case the object is not found. 
 	 */
 	public Object find(Map valueSet, Class classe) throws PersistenceLayerException;
+	
+    /**
+     * @param attribute
+     * @param value
+     * @param classe
+     * @return
+     * @throws PersistenceLayerException
+     */
+    public List findList(String attribute, Object value, Class classe) throws PersistenceLayerException;
+
 }

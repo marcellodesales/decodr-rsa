@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import net.jsurfer.cryptonline.server.math.AlgebraSingleton;
 
 public class RsaReceiver {
 
@@ -26,7 +25,7 @@ public class RsaReceiver {
     private List<String> log;
     private DecimalFormat decimalFormat = new DecimalFormat("0");
 
-    private static final AlgebraSingleton algebra = AlgebraSingleton.getInstance();
+    private static final Algebra algebra = Algebra.getInstance();
 
     /**
      * Constructs a new RsaSender with the originalMessage along with the Rsa structure
@@ -45,7 +44,7 @@ public class RsaReceiver {
         return this.originalMessage;
     }
 
-    public String getChriptedMessage() {
+    public String getEncryptedMessage() {
         return this.chriptedMessage;
     }
 
