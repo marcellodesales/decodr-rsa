@@ -7,14 +7,14 @@ import info.marcello.desalesjr.cryptonline.rsa.Algebra;
 import static info.marcello.desalesjr.cryptonline.rsa.Rsa.DECIMAL_FORMATTER;
 
 /**
- * The RSA Factos hold the prime numbers for the RSA algorithm based on public key. 
+ * The RSA Factors hold the prime numbers for the RSA algorithm based on public key.
  * 
  * The RSA Factors is thread-safe and immutable.
  * 
  * @author Marcello de Sales (marcello.desales@gmail.com)
  * 
  */
-public final class RSAFactors {
+public final class RsaFactors {
 
     /**
      * The prime number P
@@ -31,7 +31,7 @@ public final class RSAFactors {
      */
     private final List<String> log = new ArrayList<String>();
 
-    private RSAFactors(long p, long q) {
+    private RsaFactors(long p, long q) {
         this.p = p;
         this.q = q;
         this.log.add(Rsa.LOG_ARROW + "Configuring random prime numbers");
@@ -47,20 +47,20 @@ public final class RSAFactors {
      * @return a new instance of RSAFactos
      * @throws NotAPrimeNumberException if one or both given prime numbers is/are not prime
      */
-    public static RSAFactors newInstance(long p, long q) throws NotAPrimeNumberException {
+    public static RsaFactors newInstance(long p, long q) throws NotAPrimeNumberException {
         if (!Algebra.SINGLETON.isPrime(p)) {
             throw new NotAPrimeNumberException(p);
         }
         if (!Algebra.SINGLETON.isPrime(q)) {
             throw new NotAPrimeNumberException(q);
         }
-        return new RSAFactors(p, q);
+        return new RsaFactors(p, q);
     }
 
     /**
      * @return a new instance of RSAFactors with random prime numbers
      */
-    public static RSAFactors newInstance() {
+    public static RsaFactors newInstance() {
         String hasE = "E";
         long p = 0, q = 0;
         while (hasE.indexOf("E") != -1) {
@@ -68,7 +68,7 @@ public final class RSAFactors {
             q = Algebra.SINGLETON.getRandomPrime(15000);
             hasE = String.valueOf(p * q);
         }
-        return new RSAFactors(p, q);
+        return new RsaFactors(p, q);
     }
 
     /**
@@ -83,5 +83,18 @@ public final class RSAFactors {
      */
     public long getQ() {
         return q;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof RsaFactors)) {
+            return false;
+        } else
+            return (((RsaFactors) (obj)).getP() == this.p && ((RsaFactors) (obj)).getQ() == this.q);
+    }
+
+    @Override
+    public int hashCode() {
+        return 35 + new Long(this.p).hashCode() + 71 + new Long(this.q).hashCode();
     }
 }

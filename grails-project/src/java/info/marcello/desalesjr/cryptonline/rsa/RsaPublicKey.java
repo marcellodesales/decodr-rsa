@@ -14,12 +14,12 @@ import java.util.List;
  * 
  * @author Marcello de Sales (marcello.desales@gmail.com)
  */
-public final class RSAPublicKey {
+public final class RsaPublicKey {
 
     /**
      * The given factors
      */
-    private final RSAFactors factors;
+    private final RsaFactors factors;
     /**
      * The FI factor
      */
@@ -40,7 +40,7 @@ public final class RSAPublicKey {
     /**
      * @param factors are the prime numbers as the main factors of the RSA Public Key
      */
-    private RSAPublicKey(RSAFactors factors) {
+    private RsaPublicKey(RsaFactors factors) {
         this.factors = factors;
 
         // What was observed was that when the prime numbers are small, the reverse function fails... The new primes
@@ -59,13 +59,38 @@ public final class RSAPublicKey {
                 + DECIMAL_FORMATTER.format(this.e) + ")");
         this.log.add("");
     }
+    
+    /**
+     * Constructs a new RSAPublicKey with pre-defined keys.
+     * @param keyN is the public key N
+     * @param keyE is the public key E
+     */
+    private RsaPublicKey(long keyN, long keyE) {
+        this.e = keyE;
+        this.n = keyN;
+        this.fi = 0;
+        this.factors = null;
+    }
 
     /**
+     * Factory method used on the RSAFactors instance, which include the prime numbers P and Q. Constructing the object
+     * using this method gives access to all the utility variables and execution log.
      * @param factors is the instance of the Factors containing the prime numbers
-     * @return new RSA Public Key
+     * @return a new instance of the RSA Public Key
      */
-    public static RSAPublicKey newInstance(RSAFactors factors) {
-        return new RSAPublicKey(factors);
+    public static RsaPublicKey newInstance(RsaFactors factors) {
+        return new RsaPublicKey(factors);
+    }
+
+    /**
+     * Factory method based on the key N and the key E. Constructing the object with this constructor DOES NOT produce
+     * the execution logs and other utility variables.
+     * @param keyN
+     * @param keyE
+     * @return a new instance of RSAPublic Key based on the given keys.
+     */
+    public static RsaPublicKey newInstance(long keyN, long keyE) {
+        return new RsaPublicKey(keyN, keyE);
     }
 
     /**
@@ -95,27 +120,72 @@ public final class RSAPublicKey {
     /**
      * @return a generated RSAPublicKey with random keys
      */
-    public static RSAPublicKey newInstance() {
-        return new RSAPublicKey(RSAFactors.newInstance());
+    public static RsaPublicKey newInstance() {
+        return new RsaPublicKey(RsaFactors.newInstance());
     }
 
+    /**
+     * @return the prime number 'P' used a factor for calculating the public key.
+     * @throws IllegalStateException in case the public key object was constructed with the values for N and E, without
+     * passing over the generation process.
+     */
     public long getPrimeNumberP() {
-        return this.factors.getP();
+        if (this.factors != null) {
+            return this.factors.getP();
+        } else {
+            throw new IllegalStateException("The prime number 'P' is unknown: public keys not generated here.");
+        }
     }
 
+    /**
+     * @return the prime number 'Q' used a factor for calculating the public key.
+     * @throws IllegalStateException in case the public key object was constructed with the values for N and E, without
+     * passing over the generation process.
+     */
     public long getPrimeNumberQ() {
-        return this.factors.getQ();
+        if (this.factors != null) {
+            return this.factors.getQ();
+        } else {
+            throw new IllegalStateException("The prime number 'Q' is unknown: public keys not generated here.");
+        }
     }
 
+    /**
+     * @return the public key E
+     */
     public long getKeyE() {
         return this.e;
     }
 
+    /**
+     * @return the public key N
+     */
     public long getKeyN() {
         return this.n;
     }
     
+    /**
+     * @return the value of the FI value
+     */
     public double getFactorFI() {
-        return this.fi;
+        if (this.fi != 0) {
+            return this.fi;
+        } else {
+            throw new IllegalStateException("The FI number is unknown: public keys not generated here.");
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof RsaPublicKey)) {
+            return false;
+        } else {
+            return ((RsaPublicKey)obj).e == this.e && ((RsaPublicKey)obj).n == this.n;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * new Long(this.e).hashCode() + 17 * new Long(this.n).hashCode();
     }
 }

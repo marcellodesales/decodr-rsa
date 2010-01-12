@@ -35,18 +35,18 @@ public final class RsaSender {
      */
     private final List<String> log = new ArrayList<String>();
     /**
-     * The RSA public and private keys
+     * The RSAPublic key used to encrypt the original message 
      */
-    private final Rsa rsa;
+    private final RsaPublicKey publicKey;
 
     /**
      * Constructs a new RsaSender with the originalMessage along with the Rsa structure
      * 
      * @param originalMessage is the original human-readable message
-     * @param rsa is the RSA object holding the public and private keys
+     * @param publicKey is the RSA object holding the public and private keys
      */
-    private RsaSender(String originalMessage, Rsa rsa) {
-        this.rsa = rsa;
+    private RsaSender(String originalMessage, RsaPublicKey publicKey) {
+        this.publicKey = publicKey;
         this.originalMessage = originalMessage;
         this.encryptedMessage = this.encryptMessage(originalMessage);
 
@@ -56,12 +56,12 @@ public final class RsaSender {
     }
     
     /**
-     * @param originalMessage
-     * @param rsa
+     * @param originalMessage is the orginal message to be encoded
+     * @param publicKey is the key used to encrypt the given original message
      * @return a new instance of RsaSender
      */
-    public static RsaSender newInstance(String originalMessage, Rsa rsa) {
-        return new RsaSender(originalMessage, rsa);
+    public static RsaSender newInstance(String originalMessage, RsaPublicKey publicKey) {
+        return new RsaSender(originalMessage, publicKey);
     }
 
     /**
@@ -89,8 +89,8 @@ public final class RsaSender {
         this.log.add(originalMessage);
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Setting the receiver's public key");
-        this.log.add("(N , E) = (" + DECIMAL_FORMATTER.format(this.rsa.getPublicKeyN()) + " , "
-                + DECIMAL_FORMATTER.format(this.rsa.getPublicKeyE()) + ")");
+        this.log.add("(N , E) = (" + DECIMAL_FORMATTER.format(this.publicKey.getKeyN()) + " , "
+                + DECIMAL_FORMATTER.format(this.publicKey.getKeyE()) + ")");
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Transforming the message to ASCII code");
         String asciiMessage = this.getAsciiString(originalMessage);
@@ -121,7 +121,7 @@ public final class RsaSender {
         int i, messageLength;
         String asciiMessage = asciiM;
         List<Integer> blocks = new ArrayList<Integer>();
-        String stringN = new String(new Double(this.rsa.getPublicKeyN()).toString());
+        String stringN = new String(new Double(this.publicKey.getKeyN()).toString());
         int blockLength = stringN.length() - 3;
 
         while (asciiMessage.length() > 0) {
@@ -138,7 +138,7 @@ public final class RsaSender {
             }
 
             String toBeCopied = asciiMessage.substring(0, i);
-            if (Integer.parseInt(toBeCopied) > this.rsa.getPublicKeyN()) { // use n
+            if (Integer.parseInt(toBeCopied) > this.publicKey.getKeyN()) { // use n
                 i--;
                 while (asciiMessage.charAt(i) == '0') {
                     i--;
@@ -160,11 +160,11 @@ public final class RsaSender {
      */
     private double encryptBlock(int x) {
         double encryptedBlock = Algebra.SINGLETON
-                .getPowerModuleN(x, this.rsa.getPublicKeyE(), this.rsa.getPublicKeyN());
+                .getPowerModuleN(x, this.publicKey.getKeyE(), this.publicKey.getKeyN());
         this.log
                 .add("Block(" + DECIMAL_FORMATTER.format(x) + ") = " + DECIMAL_FORMATTER.format(x) + " ^ "
-                        + DECIMAL_FORMATTER.format(this.rsa.getPublicKeyE()) + " mod "
-                        + DECIMAL_FORMATTER.format(this.rsa.getPublicKeyN()) + " = "
+                        + DECIMAL_FORMATTER.format(this.publicKey.getKeyE()) + " mod "
+                        + DECIMAL_FORMATTER.format(this.publicKey.getKeyN()) + " = "
                         + DECIMAL_FORMATTER.format(encryptedBlock));
         return encryptedBlock;
     }

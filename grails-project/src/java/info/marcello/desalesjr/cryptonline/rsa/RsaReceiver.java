@@ -19,9 +19,9 @@ import java.util.StringTokenizer;
  * This is a thread-safe immutable class.
  * 
  * @author Marcello de Sales (marcello.desales@gmail.com)
- *
+ * 
  */
-public class RsaReceiver {
+public final class RsaReceiver {
 
     /**
      * The original message received
@@ -32,9 +32,9 @@ public class RsaReceiver {
      * */
     private String encryptedMessage;
     /**
-     * The rsa structure containing the public and private keys
+     * The privateKey to decode the encrypted message
      * */
-    private Rsa rsa;
+    private RsaPrivateKey privateKey;
     /**
      * Log used to output the messages
      */
@@ -44,24 +44,24 @@ public class RsaReceiver {
      * Constructs a new RsaSender with the originalMessage along with the Rsa structure
      * 
      * @param encryptedMessage is the message encrypted in blocks.
-     * @param rsa is the main RSA of the user to decrypt the message
+     * @param privateKey is the private key to decode the given message
      */
-    private RsaReceiver(String encryptedMessage, Rsa rsa) {
-        this.rsa = rsa;
+    private RsaReceiver(String encryptedMessage, RsaPrivateKey privateKey) {
+        this.privateKey = privateKey;
         this.encryptedMessage = encryptedMessage;
         this.decryptedMessage = this.getDecryptedMessage(this.encryptedMessage);
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Original Message");
         this.log.add(this.decryptedMessage);
     }
-    
+
     /**
      * @param encryptedMessage
-     * @param rsa
+     * @param privateKey is the instance of a private key
      * @return a new instance of the RsaReceiver based on the rsa.
      */
-    public static RsaReceiver newInstance(String encryptedMessage, Rsa rsa) {
-        return new RsaReceiver(encryptedMessage, rsa);
+    public static RsaReceiver newInstance(String encryptedMessage, RsaPrivateKey privateKey) {
+        return new RsaReceiver(encryptedMessage, privateKey);
     }
 
     public String getOriginalMessage() {
@@ -83,8 +83,8 @@ public class RsaReceiver {
         this.log.add(encryptedMessage);
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Setting the private key");
-        this.log.add("(N , D) = (" + DECIMAL_FORMATTER.format(this.rsa.getPublicKeyN()) + " , "
-                + DECIMAL_FORMATTER.format(this.rsa.getPrivateKeyD()) + ")");
+        this.log.add("(N , D) = (" + DECIMAL_FORMATTER.format(this.privateKey.getRSAPublicKey().getKeyN()) + " , "
+                + DECIMAL_FORMATTER.format(this.privateKey.getKeyD()) + ")");
 
         List<Integer> chriptedBlocks = this.getCryptedBlocks(encryptedMessage);
         this.log.add("");
@@ -115,12 +115,13 @@ public class RsaReceiver {
      * @return the decrypted value for the given encrypted block
      */
     private double getDechriptedBlock(double encryptedBlock) {
-        double dechriptedb = Algebra.SINGLETON.getPowerModuleN(encryptedBlock, this.rsa.getPrivateKeyD(), this.rsa
-                .getPublicKeyN());
+        double dechriptedb = Algebra.SINGLETON.getPowerModuleN(encryptedBlock, this.privateKey.getKeyD(),
+                this.privateKey.getRSAPublicKey().getKeyN());
         this.log.add("Ascii(" + DECIMAL_FORMATTER.format(encryptedBlock) + ") = "
                 + DECIMAL_FORMATTER.format(encryptedBlock) + " ^ "
-                + DECIMAL_FORMATTER.format(this.rsa.getPrivateKeyD()) + " mod "
-                + DECIMAL_FORMATTER.format(this.rsa.getPublicKeyN()) + " = " + DECIMAL_FORMATTER.format(dechriptedb));
+                + DECIMAL_FORMATTER.format(this.privateKey.getKeyD()) + " mod "
+                + DECIMAL_FORMATTER.format(this.privateKey.getRSAPublicKey().getKeyN()) + " = "
+                + DECIMAL_FORMATTER.format(dechriptedb));
         return dechriptedb;
     }
 

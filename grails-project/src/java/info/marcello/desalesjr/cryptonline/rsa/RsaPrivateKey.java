@@ -13,26 +13,26 @@ import java.util.List;
  * 
  * @author Marcello de Sales (marcello.desales@gmail.com)
  */
-public final class RSAPrivateKey {
+public final class RsaPrivateKey {
 
     /**
      * Reference to the public key
      */
-    private final RSAPublicKey publicKey;
-    /**
-     * The private log for the calculator
-     */
-    private final List<String> log = new ArrayList<String>();
+    private final RsaPublicKey publicKey;
     /**
      * Private Key d
      */
     private final double d;
-    
+    /**
+     * The private log for the calculator
+     */
+    private final List<String> log = new ArrayList<String>();
+
     /**
      * Constructs a new Rsa private Key with a public key.
      * @param publicKey is the public key
      */
-    private RSAPrivateKey(RSAPublicKey publicKey) {
+    private RsaPrivateKey(RsaPublicKey publicKey) {
         this.publicKey = publicKey;
 
         this.log.add(Rsa.LOG_ARROW + "Calculating private keys");
@@ -42,29 +42,49 @@ public final class RSAPrivateKey {
                 + DECIMAL_FORMATTER.format(this.publicKey.getKeyN()) + ", "
                 + DECIMAL_FORMATTER.format(this.d) + ");");
     }
-    
+
+    /**
+     * Constructs a new Private Key with a given keyD and the public keys associated with it
+     * @param publicKey
+     * @param keyD
+     */
+    private RsaPrivateKey(RsaPublicKey publicKey, double keyD) {
+        this.publicKey = publicKey;
+        this.d = keyD;
+    }
+
     /**
      * @param publicKey the given public key
      * @return a new instance of the RSA private key with the given key.
      */
-    public static RSAPrivateKey newInstance(RSAPublicKey publicKey) {
-        return new RSAPrivateKey(publicKey);
+    public static RsaPrivateKey newInstance(RsaPublicKey publicKey) {
+        return new RsaPrivateKey(publicKey);
     }
-    
+
+    /**
+     * Factory method for the RSAPrivateKey based on a given key D and the public key.
+     * @param publicKey is the public key object
+     * @param keyD is the private keyD
+     * @return a new instance of the RSAPrivateKey.
+     */
+    public static RsaPrivateKey newInstance(RsaPublicKey publicKey, double keyD) {
+        return new RsaPrivateKey(publicKey, keyD);
+    }
+
     /**
      * @return the reference to the public key
      */
-    public RSAPublicKey getRSAPublicKey() {
+    public RsaPublicKey getRSAPublicKey() {
         return this.publicKey;
     }
-    
+
     /**
      * @return the value of the private key D
      */
-    public double getPrivateKeyD() {
+    public double getKeyD() {
         return this.d;
     }
-    
+
     /**
      * @return generates the private key D, based on the Inverse value of the public key E
      */
@@ -152,5 +172,18 @@ public final class RSAPrivateKey {
         }
         return inverse;
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof RsaPrivateKey)) {
+            return false;
+        } else {
+            return ((RsaPrivateKey)obj).d == this.d;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * new Double(this.d).hashCode();
+    }
 }

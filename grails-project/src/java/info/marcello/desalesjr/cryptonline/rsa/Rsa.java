@@ -31,7 +31,7 @@ public final class Rsa {
     /**
      * The reference to the private key. It also contains the reference to the public key.
      */
-    private final RSAPrivateKey privateKey;
+    private final RsaPrivateKey privateKey;
 
     /**
      * The private log for the calculator
@@ -41,7 +41,7 @@ public final class Rsa {
     /**
      * Constructs a new RSA with a random configuration of keys
      */
-    private Rsa(RSAPrivateKey keys) {
+    private Rsa(RsaPrivateKey keys) {
         this.privateKey = keys;
     }
 
@@ -53,43 +53,61 @@ public final class Rsa {
      * @throws NotAPrimeNumberException if any of the numbers are not prime.
      */
     private Rsa(int p, int q) throws NotAPrimeNumberException {
-        RSAPublicKey publicKey = RSAPublicKey.newInstance(RSAFactors.newInstance(p, q));
-        this.privateKey = RSAPrivateKey.newInstance(publicKey);
+        RsaPublicKey publicKey = RsaPublicKey.newInstance(RsaFactors.newInstance(p, q));
+        this.privateKey = RsaPrivateKey.newInstance(publicKey);
     }
 
     /**
-     * @return a randomly generated RSA public and private Keys
+     * Factory method for creating a complete RSA object based on a random value of all the keys.
+     * @return a new instance of the Rsa object.
      */
     public static Rsa newInstance() {
-        RSAPrivateKey randomPrivateKey = RSAPrivateKey.newInstance(RSAPublicKey.newInstance());
-        return new Rsa(randomPrivateKey);
+        RsaPrivateKey privateKey = RsaPrivateKey.newInstance(RsaPublicKey.newInstance());
+        return new Rsa(privateKey);
     }
 
-    public long getPublicKeyN() {
-        return this.privateKey.getRSAPublicKey().getKeyN();
+    /**
+     * Factory method to create a new instance based on the prime numbers P and Q.
+     * @param primeP
+     * @param primeQ
+     * @return a new instance of Rsa based on the two prime numbers.
+     * @throws NotAPrimeNumberException in case any of the given prime numbers is not a prime number.
+     */
+    public static Rsa newInstance(int primeP, int primeQ) throws NotAPrimeNumberException {
+        return new Rsa(primeP, primeQ);
     }
 
-    public long getPublicKeyE() {
-        return this.privateKey.getRSAPublicKey().getKeyE();
+    /**
+     * @return the reference to the public key
+     */
+    public RsaPublicKey getPublicKey() {
+        return this.privateKey.getRSAPublicKey();
     }
 
-    public double getPrivateKeyD() {
-        return this.privateKey.getPrivateKeyD();
+    /**
+     * @return the reference to the private key
+     */
+    public RsaPrivateKey getPrivateKey() {
+        return this.privateKey;
     }
 
-    public void printAll(PrintStream printStream) {
+    /**
+     * Prints the keys associated with this RSA object in the given PrintStream instance.
+     * @param printStream is the print stream to be print the information.
+     */
+    public void printKeys(PrintStream printStream) {
         printStream.println("#### All RSA Information ####");
         printStream.println();
-        printStream.println("Prime P: " + (int) this.privateKey.getRSAPublicKey().getPrimeNumberP());
-        printStream.println("Prime Q: " + (int) this.privateKey.getRSAPublicKey().getPrimeNumberQ());
-        printStream.println();
-        printStream.println("Public Key (N, E) = (" + (int) this.getPublicKeyN() + ", " + (int) this.getPublicKeyE() + ")");
-        printStream.println("Private Key (N, D) = (" + (int) this.getPublicKeyN() + ", " + (int) this.getPrivateKeyD() + ")");
+        printStream.println("Public Key (N, E) = (" + (int) this.getPublicKey().getKeyN() + ", "
+                + (int) this.getPublicKey().getKeyE() + ")");
+        printStream.println("Private Key (N, D) = (" + (int) this.getPublicKey().getKeyN() + ", "
+                + (int) this.getPrivateKey().getKeyD() + ")");
         printStream.println();
     }
 
     /**
      * Prints the execution log on the given print stream
+     * 
      * @param printStream
      */
     public void printLog(PrintStream printStream) {
@@ -99,16 +117,19 @@ public final class Rsa {
     }
 
     public static void main(String[] args) {
-        Rsa rsa = Rsa.newInstance();
-        rsa.printLog(System.out);
-        rsa.printAll(System.out);
+        Rsa marcellosRsa = Rsa.newInstance();
+        marcellosRsa.printKeys(System.out);
+        
+        Rsa thiagoRsa = Rsa.newInstance();
+        thiagoRsa.printKeys(System.out);
+        //marcellosRsa.printLog(System.out);
 
-        String origem = "Marcello de Sales: because solving problems is addicting!";
+        String origem = "Marcello, is right here... ;)";
 
-        RsaSender sender = RsaSender.newInstance(origem, rsa);
+        RsaSender sender = RsaSender.newInstance(origem, marcellosRsa.getPublicKey());
         sender.printLog(System.out);
 
-        RsaReceiver receiver = RsaReceiver.newInstance(sender.getEncryptedMessage(), rsa);
+        RsaReceiver receiver = RsaReceiver.newInstance(sender.getEncryptedMessage(), marcellosRsa.getPrivateKey());
         receiver.printLog(System.out);
     }
 }
