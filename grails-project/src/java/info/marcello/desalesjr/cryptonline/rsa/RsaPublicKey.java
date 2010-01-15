@@ -186,6 +186,20 @@ public final class RsaPublicKey {
 
     @Override
     public int hashCode() {
-        return 31 * new Long(this.e).hashCode() + 17 * new Long(this.n).hashCode();
+        return 31 + 31 * new Long(this.e).hashCode() + 17 * new Long(this.n).hashCode();
+    }
+    
+    /**
+     * @return the log entries for the creation of the RSA keys, including the factors.
+     */
+    public String[] getLogEntries() {
+        List<String> logEntries = new ArrayList<String>(this.factors.getLogEntries().length + this.log.size());
+        for (String factorEntry : this.factors.getLogEntries()) {
+            logEntries.add(factorEntry);
+        }
+        for (String logEntry : this.log) {
+            logEntries.add(logEntry);
+        }
+        return logEntries.toArray(new String[logEntries.size()]);
     }
 }

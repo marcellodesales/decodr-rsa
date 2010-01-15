@@ -97,4 +97,16 @@ public final class RsaFactors {
     public int hashCode() {
         return 35 + new Long(this.p).hashCode() + 71 + new Long(this.q).hashCode();
     }
+    
+    /**
+     * @return The log entries from the factos creation
+     */
+    public String[] getLogEntries() {
+        String[] logEntries = new String[this.log.size()];
+        int i = -1;
+        for (String entry : this.log) {
+            logEntries[++i] = entry;
+        }
+        return logEntries;
+    }
 }

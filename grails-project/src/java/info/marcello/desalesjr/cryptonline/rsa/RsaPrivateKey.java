@@ -184,6 +184,17 @@ public final class RsaPrivateKey {
 
     @Override
     public int hashCode() {
-        return 31 * new Double(this.d).hashCode();
+        return 31 + 31 * new Double(this.d).hashCode();
+    }
+    
+    /**
+     * @return the log entries for the creation of the RSA key.
+     */
+    public String[] getLogEntries() {
+        List<String> logEntries = new ArrayList<String>(this.log.size());
+        for (String logEntry : this.log) {
+            logEntries.add(logEntry);
+        }
+        return logEntries.toArray(new String[logEntries.size()]);
     }
 }

@@ -96,7 +96,18 @@ public final class Rsa {
      * @param printStream is the print stream to be print the information.
      */
     public void printKeys(PrintStream printStream) {
-        printStream.println("#### All RSA Information ####");
+        printStream.println("#### RSA Public Key Creation Process ####");
+        printStream.println();
+        for (String logEntry : this.getPublicKey().getLogEntries()) {
+            printStream.println(logEntry);
+        }
+        printStream.println();
+        printStream.println("#### RSA Private Key Creation Process ####");
+        for (String logEntry : this.getPrivateKey().getLogEntries()) {
+            printStream.println(logEntry);
+        }
+        printStream.println();
+        printStream.println("#### RSA Keys Summary ####");
         printStream.println();
         printStream.println("Public Key (N, E) = (" + (int) this.getPublicKey().getKeyN() + ", "
                 + (int) this.getPublicKey().getKeyE() + ")");
@@ -119,12 +130,8 @@ public final class Rsa {
     public static void main(String[] args) {
         Rsa marcellosRsa = Rsa.newInstance();
         marcellosRsa.printKeys(System.out);
-        
-        Rsa thiagoRsa = Rsa.newInstance();
-        thiagoRsa.printKeys(System.out);
-        //marcellosRsa.printLog(System.out);
 
-        String origem = "Marcello, is right here... ;)";
+        String origem = "Marcello de Sales: \"Getting Hired at the Hacker Dojo Job Fair (Jan 16, 2010)\"";
 
         RsaSender sender = RsaSender.newInstance(origem, marcellosRsa.getPublicKey());
         sender.printLog(System.out);
