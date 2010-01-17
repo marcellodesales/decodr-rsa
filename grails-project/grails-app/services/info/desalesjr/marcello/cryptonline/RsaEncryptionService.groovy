@@ -2,12 +2,15 @@ package info.desalesjr.marcello.cryptonline
 
 import info.desalesjr.marcello.cryptonline.UserKeyLogEntry;
 import info.desalesjr.marcello.cryptonline.UserKeys;
-import info.desalesjr.marcello.cryptonline.rsa.Rsa;
+import info.desalesjr.marcello.cryptonline.algorithm.Rsa;
 
 class RsaEncryptionService {
 
     boolean transactional = true
     
+    /**
+     * Creates the RSA Keys for the given user, saving the result in the database.
+     */
     def void createRsaKeys(User user) {
         Rsa userRsa = Rsa.newInstance()
 
@@ -21,8 +24,8 @@ class RsaEncryptionService {
             userEntry.entry = logEntry
             keys.addToCreationLogs(userEntry)
         }
-
         user.userKeys = keys
+        user.save()
     }
     
     

@@ -26,4 +26,8 @@ class RsaEncryptionServiceIntegrationTests extends GrailsUnitTestCase {
             assertNotNull("Entry cannot be null", entry)
         }
     }
+    
+    void testRsaEncryption() {
+        
+    }
 }

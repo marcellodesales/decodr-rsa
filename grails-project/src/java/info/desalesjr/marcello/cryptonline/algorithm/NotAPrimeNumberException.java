@@ -1,4 +1,4 @@
-package info.marcello.desalesjr.cryptonline.rsa;
+package info.desalesjr.marcello.cryptonline.algorithm;
 
 /**
  * Exception thrown when a given number is not prime

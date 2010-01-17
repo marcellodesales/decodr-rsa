@@ -4,7 +4,7 @@
  * @author Created by Marcello Junior
  */
 
-package info.marcello.desalesjr.cryptonline.rsa;
+package info.desalesjr.marcello.cryptonline.algorithm;
 
 /**
  * Implements the algebra formulas. Singleton Enum

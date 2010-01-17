@@ -1,4 +1,4 @@
-package info.marcello.desalesjr.cryptonline.rsa;
+package info.desalesjr.marcello.cryptonline.algorithm;
 
 import java.io.PrintStream;
 import java.text.DecimalFormat;

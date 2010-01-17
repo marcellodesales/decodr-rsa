@@ -1,6 +1,6 @@
-package info.marcello.desalesjr.cryptonline.rsa;
+package info.desalesjr.marcello.cryptonline.algorithm;
 
-import static info.marcello.desalesjr.cryptonline.rsa.Rsa.DECIMAL_FORMATTER;
+import static info.desalesjr.marcello.cryptonline.algorithm.Rsa.DECIMAL_FORMATTER;
 
 import java.util.ArrayList;
 import java.util.List;

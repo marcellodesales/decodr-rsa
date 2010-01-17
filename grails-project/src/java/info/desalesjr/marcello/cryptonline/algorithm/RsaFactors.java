@@ -1,10 +1,10 @@
-package info.marcello.desalesjr.cryptonline.rsa;
+package info.desalesjr.marcello.cryptonline.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import info.marcello.desalesjr.cryptonline.rsa.Algebra;
-import static info.marcello.desalesjr.cryptonline.rsa.Rsa.DECIMAL_FORMATTER;
+import info.desalesjr.marcello.cryptonline.algorithm.Algebra;
+import static info.desalesjr.marcello.cryptonline.algorithm.Rsa.DECIMAL_FORMATTER;
 
 /**
  * The RSA Factors hold the prime numbers for the RSA algorithm based on public key.
