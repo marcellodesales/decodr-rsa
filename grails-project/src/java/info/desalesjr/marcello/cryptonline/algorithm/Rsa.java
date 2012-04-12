@@ -131,12 +131,12 @@ public final class Rsa {
         Rsa marcellosRsa = Rsa.newInstance();
         marcellosRsa.printKeys(System.out);
 
-        String origem = "Marcello de Sales: \"Getting Hired at the Hacker Dojo Job Fair (Jan 16, 2010)\"";
+        String origem = "Marcello de Sales: \"Passion for Software Engineering\"";
 
-        RsaSender sender = RsaSender.newInstance(origem, marcellosRsa.getPublicKey());
+        RsaEncoder sender = RsaEncoder.newInstance(origem, marcellosRsa.getPublicKey());
         sender.printLog(System.out);
 
-        RsaReceiver receiver = RsaReceiver.newInstance(sender.getEncryptedMessage(), marcellosRsa.getPrivateKey());
+        RsaDecoder receiver = RsaDecoder.newInstance(sender.getEncryptedMessage(), marcellosRsa.getPrivateKey());
         receiver.printLog(System.out);
     }
 }

@@ -68,7 +68,13 @@ public enum Algebra {
         }
         return q;
     }
-    
+
+    /**
+     * The extended Euclid's MDC algorithm.
+     * @param p is the prime p
+     * @param q is the q
+     * @return the extended mdc value.
+     */
     public static double getExtendedMDC(double p, double q) {
         double mdc, t = 0, u = 0;
         double a = p;

@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The RsaSender implements the encryption machine.
+ * The Rsa Encoder implements the encryption machine.
  * 
  * This is a thread-safe immutable class.
  * 
- * @author marcello
+ * @author Marcello de Sales (marcello.desales@gmail.com)
  *
  */
-public final class RsaSender {
+public final class RsaEncoder {
 
     /**
      * The original message to be sent
@@ -45,7 +45,7 @@ public final class RsaSender {
      * @param originalMessage is the original human-readable message
      * @param publicKey is the RSA object holding the public and private keys
      */
-    private RsaSender(String originalMessage, RsaPublicKey publicKey) {
+    private RsaEncoder(String originalMessage, RsaPublicKey publicKey) {
         this.publicKey = publicKey;
         this.originalMessage = originalMessage;
         this.encryptedMessage = this.encryptMessage(originalMessage);
@@ -56,12 +56,12 @@ public final class RsaSender {
     }
     
     /**
-     * @param originalMessage is the orginal message to be encoded
+     * @param originalMessage is the original message to be encoded
      * @param publicKey is the key used to encrypt the given original message
      * @return a new instance of RsaSender
      */
-    public static RsaSender newInstance(String originalMessage, RsaPublicKey publicKey) {
-        return new RsaSender(originalMessage, publicKey);
+    public static RsaEncoder newInstance(String originalMessage, RsaPublicKey publicKey) {
+        return new RsaEncoder(originalMessage, publicKey);
     }
 
     /**
@@ -80,10 +80,11 @@ public final class RsaSender {
 
     /**
      * @param originalMessage is the human-readable message
-     * @return the chripted message based on the original human-readable message and the RSA private and public keys
+     * @return the encrypted message based on the original human-readable message and the RSA private and public keys
      */
     private String encryptMessage(String originalMessage) {
-        this.log.add("Sending a message");
+        this.log.add("");
+        this.log.add("#### Sending a message ####");
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Original Message");
         this.log.add(originalMessage);
@@ -93,7 +94,7 @@ public final class RsaSender {
                 + DECIMAL_FORMATTER.format(this.publicKey.getKeyE()) + ")");
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Transforming the message to ASCII code");
-        String asciiMessage = this.getAsciiString(originalMessage);
+        String asciiMessage = this.encodeStringToAscii(originalMessage);
         this.log.add(asciiMessage);
         this.log.add("");
         this.log.add(Rsa.LOG_ARROW + "Configuring randomly selected blocks from the ASCII message");
@@ -105,7 +106,7 @@ public final class RsaSender {
      * @param widestring is the string before encryption
      * @return the ASCII representation a string
      */
-    private String getAsciiString(String widestring) {
+    private String encodeStringToAscii(String widestring) {
         StringBuffer ascii = new StringBuffer();
         for (int i = 0; i < widestring.length(); i++) {
             ascii.append((int) widestring.charAt(i) + 100);
@@ -153,7 +154,7 @@ public final class RsaSender {
     }
 
     /**
-     * Enchripts a block with the Power Module N algorithm [1241] => 343434
+     * Encrypts a block with the Power Module N algorithm [1241] => 343434
      * 
      * @param x is the number representing a block
      * @return the result of the Power Module N algorithm
@@ -170,11 +171,11 @@ public final class RsaSender {
     }
 
     /**
-     * Returns the set of chripted blocks of the ascii representation applying the Power Module N algorithm Coded
-     * blocks: [1241][355][3][34] ==> Encriteped Final message: 343434-43552-43544-3435
+     * Returns the set of encrypted blocks of the ascii representation applying the Power Module N algorithm Coded
+     * blocks: [1241][355][3][34] ==> Encrypted Final message: 343434-43552-43544-3435
      * 
-     * @param codedBlocks is the list of coded blocks to be encripted
-     * @return the encripted message based on the Power Module N algorithm based on the coded blocks
+     * @param codedBlocks is the list of coded blocks to be encrypted
+     * @return the encrypted message based on the Power Module N algorithm based on the coded blocks
      */
     private String encryptBlocks(List<Integer> codedBlocks) {
         this.log.add("Bloco(x) = x ^ E mod N");
@@ -192,7 +193,7 @@ public final class RsaSender {
 
     /**
      * Prints the log into a given print stream
-     * @param printStream is a strem where the log will be printed. System.out, Servlet.getPrintWriter
+     * @param printStream is a stream where the log will be printed. System.out, Servlet.getPrintWriter
      */
     public void printLog(PrintStream printStream) {
         for (String logEntry : this.log) {
