@@ -1,0 +1,45 @@
+/*
+ * Build for a Java project
+ */
+apply plugin: "java"
+
+/*
+ * Generates the Eclipse project files. "gradle eclipse"
+ */
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  compile 'com.google.guava:guava:11.0.2'
+
+  testCompile group: 'junit', name: 'junit', version: '4.10'
+}
+
+/*
+ * The source compatibility
+ */
+sourceCompatibility = 1.7
+
+/*
+* Version of the jar generated for the core.
+*/
+version = 1.0
+
+archivesBaseName = "com.signr.rsa"
+def mainClient = archivesBaseName + "api.Client"
+
+/*
+ * Creates a jar file
+ * http://gradle.org/java_plugin.html
+ */
+jar {
+   manifest {
+       attributes 'Implementation-Title': 'RSA Signr',
+                  'Implementation-Version': version, 'Created-By': "Marcello de Sales",
+                  'Main-Class': mainClient
+   }
+}
+
