@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -133,16 +134,32 @@ public final class Rsa {
   }
 
   public static void main(String[] args) {
+    System.out.println("########## RSA Signr ###########");
+    System.out.println("Click in any key to see the creation of a random public/private keys.");
+
+    Scanner input = new Scanner(System.in);
+    input.nextLine();
+
     Rsa marcellosRsa = Rsa.newInstance();
     marcellosRsa.printKeys(System.out);
 
-    String origem = "Marcello de Sales: \"Passion for Software Engineering\"";
+    System.out.print("Now, type the message to be encrypted: ");
+    String origem = input.nextLine();
 
+    System.out.println();
+    System.out.print("The Encoder will encrypt your message...");
     RsaEncoder sender = RsaEncoder.newInstance(origem, marcellosRsa.getPublicKey());
+
+    System.out.print("Press any key to see the algorithm...");
+    input.nextLine();
+
     sender.printLog(System.out);
 
-    RsaDecoder receiver =
-        RsaDecoder.newInstance(sender.getEncryptedMessage(), marcellosRsa.getPrivateKey());
+    System.out.println();
+    System.out.print("Now that you have seen the encryption, let's proceed with the decoding... Press any key...");
+    input.nextLine();
+
+    RsaDecoder receiver = RsaDecoder.newInstance(sender.getEncryptedMessage(), marcellosRsa.getPrivateKey());
     receiver.printLog(System.out);
   }
 }

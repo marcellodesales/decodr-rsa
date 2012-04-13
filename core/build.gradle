@@ -43,7 +43,7 @@ sourceCompatibility = 1.7
 version = 1.0
 
 archivesBaseName = "com.signr.rsa"
-def mainClient = archivesBaseName + "api.Client"
+def mainClient = archivesBaseName + ".core.Rsa"
 
 /*
  * Creates a jar file
@@ -55,6 +55,33 @@ jar {
                   'Implementation-Version': version, 'Created-By': "Marcello de Sales",
                   'Main-Class': mainClient
    }
+
+   doLast {
+     // adding the dependency of libraries into the runtime lib dir for execution of main class.
+     def dependsFileName
+     sourceSets.main.runtimeClasspath.each{ jarDependencyFile ->
+       if (jarDependencyFile.absolutePath.contains("guava")) {
+         dependsFileName = jarDependencyFile.name
+         ant.copy(file: jarDependencyFile.absolutePath, todir: "$buildDir/libs")
+       }
+     }
+  
+     def jarName = "$archivesBaseName-$version" + ".jar"
+     ant.echo(message: "java -cp $buildDir/libs/$jarName:$buildDir/libs/$dependsFileName $mainClient \$1",
+       file: "run.sh")
+     ant.chmod(file: "run.sh", perm: "+x")
+
+     println ""
+     println "##############################"
+     println "WOOOHOOO! FINISHED!"
+     println "You are ready to run the command \"./run.sh --help\" for instructions!"
+     println "##############################"
+   }
+}
+
+clean {
+  // cleaning the execution script
+  ant.delete(file: "run.sh")
 }
 
 //cobertura {
