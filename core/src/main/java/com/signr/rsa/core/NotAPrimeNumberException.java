@@ -1,7 +1,8 @@
-package info.desalesjr.marcello.cryptonline.algorithm;
+package com.signr.rsa.core;
 
 /**
- * Exception thrown when a given number is not prime
+ * Exception thrown when a given number is not prime.
+ * 
  * @author Marcello de Sales (marcello.desales@gmail.com)
  */
 public class NotAPrimeNumberException extends Exception {
