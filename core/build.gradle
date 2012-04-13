@@ -44,6 +44,7 @@ version = 1.0
 
 archivesBaseName = "com.signr.rsa"
 def mainClient = archivesBaseName + ".core.Rsa"
+def jarName = "$archivesBaseName-$version" + ".jar"
 
 /*
  * Creates a jar file
@@ -65,8 +66,7 @@ jar {
          ant.copy(file: jarDependencyFile.absolutePath, todir: "$buildDir/libs")
        }
      }
-  
-     def jarName = "$archivesBaseName-$version" + ".jar"
+
      ant.echo(message: "java -cp $buildDir/libs/$jarName:$buildDir/libs/$dependsFileName $mainClient \$1",
        file: "run.sh")
      ant.chmod(file: "run.sh", perm: "+x")
@@ -77,6 +77,11 @@ jar {
      println "You are ready to run the command \"./run.sh --help\" for instructions!"
      println "##############################"
    }
+}
+
+task copyToWebLib(description: "Copies the generated core jar to the web/lib") {
+  ant.echo(message: "After generating the jar, copy it to ../web/lib")
+  ant.copy(file: "$buildDir/libs/$jarName", todir: "$buildDir/../../web/lib")
 }
 
 clean {

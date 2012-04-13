@@ -3,6 +3,7 @@ package com.signr.rsa.core;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -96,30 +97,38 @@ public final class Rsa {
     return this.privateKey;
   }
 
+  public List<String> getKeysLog() {
+    List<String> log = new LinkedList<>();
+    log.add("#### RSA Public Key Creation Process ####");
+    log.add("");
+    for (String logEntry : this.getPublicKey().getLogEntries()) {
+      log.add(logEntry);
+    }
+    log.add("");
+    log.add("#### RSA Private Key Creation Process ####");
+    for (String logEntry : this.getPrivateKey().getLogEntries()) {
+      log.add(logEntry);
+    }
+    log.add("");
+    log.add("#### RSA Keys Summary ####");
+    log.add("");
+    log.add("Public Key (N, E) = (" + (int) this.getPublicKey().getKeyN() + ", "
+        + (int) this.getPublicKey().getKeyE() + ")");
+    log.add("Private Key (N, D) = (" + (int) this.getPublicKey().getKeyN() + ", "
+        + (int) this.getPrivateKey().getKeyD() + ")");
+    log.add("");
+    return log;
+  }
+
   /**
    * Prints the keys associated with this RSA object in the given PrintStream instance.
    * 
    * @param printStream is the print stream to be print the information.
    */
   public void printKeys(PrintStream printStream) {
-    printStream.println("#### RSA Public Key Creation Process ####");
-    printStream.println();
-    for (String logEntry : this.getPublicKey().getLogEntries()) {
+    for (String logEntry : getKeysLog()) {
       printStream.println(logEntry);
     }
-    printStream.println();
-    printStream.println("#### RSA Private Key Creation Process ####");
-    for (String logEntry : this.getPrivateKey().getLogEntries()) {
-      printStream.println(logEntry);
-    }
-    printStream.println();
-    printStream.println("#### RSA Keys Summary ####");
-    printStream.println();
-    printStream.println("Public Key (N, E) = (" + (int) this.getPublicKey().getKeyN() + ", "
-        + (int) this.getPublicKey().getKeyE() + ")");
-    printStream.println("Private Key (N, D) = (" + (int) this.getPublicKey().getKeyN() + ", "
-        + (int) this.getPrivateKey().getKeyD() + ")");
-    printStream.println();
   }
 
   /**
