@@ -199,4 +199,15 @@ public final class RsaEncoder {
       printStream.println(logEntry);
     }
   }
+
+  /**
+   * @return the log entries for the creation of the encoding process.
+   */
+  public String[] getLog() {
+    List<String> logEntries = new ArrayList<>(log.size());
+    for (String factorEntry : log) {
+      logEntries.add(factorEntry);
+    }
+    return logEntries.toArray(new String[logEntries.size()]);
+  }
 }

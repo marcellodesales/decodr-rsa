@@ -169,7 +169,8 @@ public final class RsaPrivateKey {
     if (!(obj instanceof RsaPrivateKey)) {
       return false;
     } else {
-      return ((RsaPrivateKey) obj).d == this.d;
+      RsaPrivateKey other = (RsaPrivateKey) obj;
+      return other.d == this.d && other.publicKey.equals(this.publicKey);
     }
   }
 
