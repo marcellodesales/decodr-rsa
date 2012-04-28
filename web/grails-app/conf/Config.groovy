@@ -31,9 +31,15 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
+grails.plugins.twitterbootstrap.fixtaglib = true
+// grails.plugins.twitterbootstrap.defaultBundle = ONE OF BELOW
+//    'bundle_name': bundle resources using bundle name
+//    false: disable bundling
+//    default value: 'bundle_bootstrap'
+grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'
+
 // What URL patterns should be processed by the resources plugin
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
-
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -87,6 +93,7 @@ log4j = {
            'org.codehaus.groovy.grails.commons', // core / classloading
            'org.codehaus.groovy.grails.plugins', // plugins
            'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+           'grails.plugins.twitterbootstrap', // twitter bootstrap
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'

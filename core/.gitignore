@@ -1,0 +1,13 @@
+.DS_Store
+lib-cov
+*.log
+*.dat
+*.out
+*.pid.swp
+*.swp
+.gradle
+.classpath
+.project
+.settings/
+build/
+bin/

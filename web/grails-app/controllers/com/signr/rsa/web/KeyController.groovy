@@ -7,7 +7,8 @@ class KeyController {
   def keyService
 
   def index() {
-    render "This is the for RSA keys..."
+    
+    [page: "RSA Keys"]
   }
 
   def random() {
