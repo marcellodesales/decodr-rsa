@@ -8,13 +8,14 @@ class EncoderController {
   def encoderService
 
   def index() {
-    render "Encode message...make http call to encode?n=SOMEONES_PUBLIC_N&e=SOMEONE_PUBLIC_E&m=YOUR_MSG_TO_SOMEONE"
+
+    []
   }
 
   def encode() {
-    def publicKeyN = Long.valueOf(request.getParameter("n"))
-    def publicKeyE = Long.valueOf(request.getParameter("e"))
-    def originalMessage = request.getParameter("m")
+    def publicKeyN = Long.valueOf(params.n)
+    def publicKeyE = Long.valueOf(params.e)
+    def originalMessage = params.m
 
     def publicKey = keyService.makePublicKey(publicKeyN, publicKeyE)
     RsaEncoder encoder = encoderService.getEncoder(originalMessage, publicKey)

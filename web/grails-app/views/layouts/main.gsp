@@ -67,15 +67,19 @@
                   <g:link controller="key" action="index">Introduction</g:link></li>
               <li ${controllerName == "key" && actionName == "random" ? 'class="active"' : ''}>
                  <g:link controller="key" action="random">Generate Keys</g:link></li>
-              <li><a href="#">View Keys</a></li>
-              <li><a href="#">Share Keys</a></li>
- 
+
               <li class="nav-header">Encode Messages</li>
-              <li><a href="#">Send Twitter Messages</a></li>
-              <li><a href="#">Send Facebook Messages</a></li>
- 
+              <li ${controllerName == "encoder" && actionName == "index" ? 'class="active"' : ''}>
+                  <g:link controller="encoder" action="index">Introduction</g:link></li>
+              <li ${controllerName == "encoder" && actionName == "encode" ? 'class="active"' : ''}>
+                 <g:link controller="encoder" action="encode">Encode Message</g:link></li>
+
               <li class="nav-header">Decode Messages</li>
               <li><a href="#">Receive</a></li>
+              
+              <li class="divider"></li>
+              <li><a href="#">Options</a></li>
+              
             </ul>
           </div><!--/.well -->
 

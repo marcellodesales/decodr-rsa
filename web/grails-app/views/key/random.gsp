@@ -17,7 +17,7 @@
     <div class="span4">
       <div class="alert alert-info">
         <h4 class="alert-heading">Public Key</h4>
-          <decodr:rsaKey key="${randomRsa.publicKey}" />
+        <decodr:rsaKey key="${randomRsa.publicKey}" />
       </div>
     </div>
     <div class="span4">
@@ -26,7 +26,7 @@
     <div class="span4">
       <div class="alert alert-error">
         <h4 class="alert-heading">Private Key</h4> 
-          <decodr:rsaKey key="${randomRsa.privateKey}" />
+        <decodr:rsaKey key="${randomRsa.privateKey}" />
       </div>
     </div>
   </div>
