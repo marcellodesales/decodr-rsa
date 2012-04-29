@@ -62,9 +62,11 @@
 
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Your RSA Keys</li>
-              <li class="active"><a href="#">Introduction</a></li>
-              <li><g:link controller="key" action="random">Generate Keys</g:link></li>
+              <li class="nav-header">RSA Keys</li>
+              <li ${controllerName == "key" && actionName == "index" ? 'class="active"' : ''}>
+                  <g:link controller="key" action="index">Introduction</g:link></li>
+              <li ${controllerName == "key" && actionName == "random" ? 'class="active"' : ''}>
+                 <g:link controller="key" action="random">Generate Keys</g:link></li>
               <li><a href="#">View Keys</a></li>
               <li><a href="#">Share Keys</a></li>
  
