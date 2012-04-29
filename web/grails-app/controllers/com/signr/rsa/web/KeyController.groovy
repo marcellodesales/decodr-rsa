@@ -13,11 +13,7 @@ class KeyController {
 
   def random() {
     def randomRsa = keyService.makeRandom()
-    def explanationLog = new StringBuilder()
-    explanationLog.append("Generating a random pair of keys...<BR><BR>")
-    randomRsa.getKeysLog().each { logEntry ->
-      explanationLog.append(logEntry + "<BR>")
-    }
-    render explanationLog
+
+    [keyGenLog: randomRsa.getKeysLog(), randomRsa: randomRsa]
   }
 }
