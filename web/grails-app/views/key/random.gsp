@@ -16,17 +16,37 @@
   <div class="row-fluid">
     <div class="span4">
       <div class="alert alert-info">
-        <h4 class="alert-heading">Public Key</h4> 
-            Public Key (N,E) = (${randomRsa.publicKey.keyN}, ${randomRsa.publicKey.keyE}).
+        <h4 class="alert-heading">Public Key</h4>
+          <decodr:rsaKey key="${randomRsa.publicKey}" />
+          <BR>
+          <decodr:rsaKey key="${randomRsa.publicKey}" format="link" />
       </div>
+    </div>
+    <div class="span4">
+    &nbsp;
     </div>
     <div class="span4">
       <div class="alert alert-error">
         <h4 class="alert-heading">Private Key</h4> 
-            Private Key (N,D) = (${randomRsa.publicKey.keyN}, <g:formatNumber number="${randomRsa.privateKey.keyD}" format="0" />).
+          <decodr:rsaKey key="${randomRsa.privateKey}" />
+          <BR>
+          <decodr:rsaKey key="${randomRsa.privateKey}" format="link" />
       </div>
     </div>
+  </div>
 
+  <div class="row-fluid">
+    <div class="span4">
+        <g:link controller="encoder" action="index" class="btn btn-primary btn-large">
+            Encode Message &raquo;</g:link></p>
+    </div>
+    <div class="span4">
+        &nbsp;
+    </div>
+    <div class="span4">
+        <g:link controller="decoder" action="index" class="btn btn-primary btn-large">
+            Decode Message &raquo;</g:link></p>
+    </div>
   </div>
 
   <div class="row-fluid">
