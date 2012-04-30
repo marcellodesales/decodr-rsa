@@ -14,7 +14,7 @@
         $('input#submitDecodeButton').click(submitDecoderForm);
 
         /** Hide the result textarea */
-        $('div#encodedMessageArea').hide();
+        $('div#encodedMessageArea, div#publicKeyToDisplay').hide();
 
         /** Adds the clipboard function to the button */
         //$("input#copyEncodedMessageButton").zclip({
@@ -37,6 +37,36 @@
             });
         });
 
+        /** Register the click of the button to encode the message. */
+        $('input#publicKeyToReplace').keypress(function(e) {
+            // if the user pressed ENTER and the value of the field is empty
+            if (e.which == 13 && $(this).attr("value") == "") {
+                alert("You need to provide the value for this field.");
+                $(this).focus();
+                return;
+
+            } else if (e.which == 13 && $(this).attr("value").split("(").length != 3) {
+                alert("You need to Copy and Paste the Key Strings as shown.");
+                $(this).focus();
+                return;
+            }
+            var idT = $(this).attr("id") == "publicKeyToReplace" ? "publicKeyToDisplay" : "privateKeyToDisplay";
+            if (e.which == 13) {
+                var selector = 'div[id='+ idT +']';
+                $(selector).html($(this).attr("value"));
+                $(selector).show();
+                $(this).hide();
+                var keys = $(this).attr("value").split("(")[2].replace(")","").replace(" ","").split(",");
+                if (idT == "publicKeyToDisplay") {
+                    $("#n").val(keys[0]);
+                    $("#e").val(keys[1]);
+                } else {
+                    $("#n").val(keys[0]);
+                    $("#d").val(keys[1]);
+                }
+            }
+        });
+
       });
 
       /**
@@ -52,8 +82,8 @@
         }
         var url = "${createLink(controller:'encoder', action:'encode')}";
         var params = {};
-        params["n"] = ${params.n ? params.n : 0};
-        params["e"] = ${params.e ? params.e : 0};
+        params["n"] = $("#n").val()
+        params["e"] = $("#e").val()
         params["m"] = $("textarea#m").val();
         $.getJSON(url, params,
             function(encodeResult){
@@ -124,25 +154,28 @@
            <decodr:rsaKey n="${params.n}" e="${params.e}" />
          </div>
       </g:if>
+      <g:else>
+         <div class="alert alert-info">
+           <h4 class="alert-heading">Public Key</h4>
+           <input id="publicKeyToReplace" type="text" value="">
+           <div id="publicKeyToDisplay"></div>
+         </div>
+      </g:else>
     </div><!--/span-->
 
     <div class="span4">
-     <g:if test="${!params.n && !params.e}">
       <h2>Encode Message</h2>
-     </g:if>
-     <g:else>
-        <g:form class="well">
-          <div id="messageGroup" class="control-group">
-            <label class="control-label" for="m">Encode Message</label>
-            <div class="control">
-                <textarea class="input-xlarge" name="m" id="m" rows="3" cols="50"></textarea>
-                <input type="hidden" name="n" value="${params.n}">
-                <input type="hidden" name="e" value="${params.e}">
-            </div>
+      <g:form class="well">
+        <div id="messageGroup" class="control-group">
+          <label class="control-label" for="m">Encode Message</label>
+          <div class="control">
+              <textarea class="input-xlarge" name="m" id="m" rows="3" cols="50"></textarea>
+              <input id="n" name="n" type="hidden" value="${params.n ? params.n : ''}">
+              <input id="e" name="e" type="hidden" value="${params.e ? params.e : ''}">
           </div>
-          <input id="submitComputationButton" class="btn btn-primary btn-medium" type="button"  value="Encode Message &raquo;">
-        </g:form>
-     </g:else>
+        </div>
+        <input id="submitComputationButton" class="btn btn-primary btn-medium" type="button"  value="Encode Message &raquo;">
+      </g:form>
     </div><!--/span-->
 
     <div class="span4">
@@ -160,7 +193,7 @@
   <div class="row-fluid">
     <div id="encodedMessageArea" class="span4">
         <h2>Encoded message...</h2>
-        <g:form name="decodeForm" id="decodeForm" class="well" controller="decoder" action="decode">
+        <g:form name="decodeForm" id="decodeForm" class="well" controller="decoder" action="index">
           <textarea id="encodedMessage" class="input-xlarge uneditable-textarea" rows="5" cols="50"></textarea>
           <BR/>
           <!-- input id="copyEncodedMessageButton" class="btn btn-primary btn-medium" type="button" value="Copy to clipboard &raquo;" -->
@@ -168,9 +201,8 @@
           <div id="decodeMessageGroup" class="control-group">
             <label class="control-label" for="m">Start Decoding - Enter Private Key D</label>
             <div class="control">
-                <input type="text" class="input-xlarge" name="d" id="d">
-                <input type="hidden" name="n" value="${params.n}">
-                <input type="hidden" name="e" value="${params.e}">
+                <input type="hidden" name="n" value="${params.n ?: ''}">
+                <input type="hidden" name="e" value="${params.e ?: ''}">
                 <input type="hidden" name="m" value="">
             </div>
           </div>

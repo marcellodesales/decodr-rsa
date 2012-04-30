@@ -139,14 +139,10 @@
     <div class="span4">
       <h2>RSA Keys</h2>
       <p>Use any set of keys.</p>
-      <g:if test="${params.n && params.e && params.d}">
+      <g:if test="${params.n && params.e}">
          <div class="alert alert-info">
            <h4 class="alert-heading">Public Key</h4>
            <decodr:rsaKey n="${params.n}" e="${params.e}" />
-         </div>
-         <div class="alert alert-error">
-           <h4 class="alert-heading">Private Key</h4>
-           <decodr:rsaKey n="${params.n}" e="${params.d}" />
          </div>
       </g:if>
       <g:else>
@@ -155,6 +151,14 @@
            <input id="publicKeyToReplace" type="text" value="">
            <div id="publicKeyToDisplay"></div>
          </div>
+      </g:else>
+      <g:if test="${params.n && params.d}">
+         <div class="alert alert-error">
+           <h4 class="alert-heading">Private Key</h4>
+           <decodr:rsaKey n="${params.n}" e="${params.d}" />
+         </div>
+      </g:if>
+      <g:else>
          <div class="alert alert-error">
            <h4 class="alert-heading">Private Key</h4>
            <input id="privateKeyToReplace" type="text" value="">
@@ -169,10 +173,10 @@
           <div id="messageGroup" class="control-group">
             <label class="control-label" for="m">Decode Message</label>
             <div class="control">
-                <textarea class="input-xlarge" name="m" id="m" rows="3" cols="50"></textarea>
-                <input type="hidden" id="n" name="n" value="${params.n ? params.n : ''}">
-                <input type="hidden" id="e" name="e" value="${params.e ? params.e : ''}">
-                <input type="hidden" id="d" name="d" value="${params.d ? params.d : ''}">
+                <textarea class="input-xlarge" name="m" id="m" rows="3" cols="50">${params.m ?: ''}</textarea>
+                <input type="hidden" id="n" name="n" value="${params.n ?: ''}">
+                <input type="hidden" id="e" name="e" value="${params.e ?: ''}">
+                <input type="hidden" id="d" name="d" value="${params.d ?: ''}">
             </div>
           </div>
           <input id="submitDecodeButton" class="btn btn-primary btn-medium" type="button"  value="Decode Message &raquo;">
