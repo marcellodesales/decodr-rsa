@@ -1,11 +1,11 @@
 <html lang="en">
 <head>
+    <title><g:layoutTitle default="Decodr: RSA Algorithm Explained..." /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Decodr: RSA Algorithm Explained...">
     <meta name="author" content="Marcello de Sales (marcello.desales@gmail.com)">
-
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -15,10 +15,8 @@
         padding: 9px 0;
       }
     </style>
-
-    <g:layoutHead />
     <r:layoutResources/>
-    <title><g:layoutTitle default="Decodr: RSA Algorithm Explained..." /></title>
+    <g:layoutHead />
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
