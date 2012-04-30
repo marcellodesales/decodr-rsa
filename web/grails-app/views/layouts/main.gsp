@@ -1,6 +1,9 @@
 <html lang="en">
 <head>
-    <title><g:layoutTitle default="Decodr: RSA Algorithm Explained..." /></title>
+    <g:if test="${pageProperty(name:'page.title')}">
+        <g:set var="pageHeader">DecodR: RSA Algorithm Explained - <g:pageProperty name="page.title" /></g:set>
+    </g:if>
+    <title><g:layoutTitle default="DecodR: RSA Algorithm Explained ${pageHeader ?: ''}" /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,13 +71,12 @@
 
               <li class="nav-header">Encode Messages</li>
               <li ${controllerName == "encoder" && actionName == "index" ? 'class="active"' : ''}>
-                  <g:link controller="encoder" action="index">Introduction</g:link></li>
-              <li ${controllerName == "encoder" && actionName == "encode" ? 'class="active"' : ''}>
-                 <g:link controller="encoder" action="encode">Encode Message</g:link></li>
+                  <g:link controller="encoder" action="index">Encode Message</g:link></li>
 
               <li class="nav-header">Decode Messages</li>
-              <li><a href="#">Receive</a></li>
-              
+              <li ${controllerName == "decoder" && actionName == "index" ? 'class="active"' : ''}>
+                 <g:link controller="decoder" action="index">Decode Message</g:link></li>
+
               <li class="divider"></li>
               <li><a href="#">Options</a></li>
               

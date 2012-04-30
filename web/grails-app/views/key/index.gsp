@@ -2,6 +2,7 @@
    <head>
       <meta name="layout" content="main"/>
       <r:require modules="bootstrap"/>
+      <title>RSA Public and Private Keys</title>
    </head>
 <body>
 
@@ -9,7 +10,7 @@
     <h1>RSA Keys</h1>
     <p>This is where you can play with RSA Public and Private keys.</p>
     <p><g:link controller="key" action="random" class="btn btn-primary btn-large">
-        Generate Random &raquo;</g:link></p>
+        Generate Random Keys &raquo;</g:link></p>
   </div>
   
   <div class="row-fluid">
@@ -26,7 +27,7 @@
     </div><!--/span-->
     <div class="span4">
       <h2>Private Key</h2>
-      <p>Calculated from Extended Euclidean MDC:</p>
+      <p>Calculated from Extended Eucledean MDC:</p>
         <li>(p1,p2,p3) = (1, 0 , ϕ(N))
         <li>(q1,q2,q3) = (0, 1 , E ))</li>
         <li>While q3 != 0

@@ -1,5 +1,6 @@
 <html>
    <head>
+      <title>Encode Messages</title>
       <meta name="layout" content="main"/>
 
       <r:require modules="bootstrap, jquery, prettify, jqueryClipboard"/>
@@ -51,8 +52,8 @@
         }
         var url = "${createLink(controller:'encoder', action:'encode')}";
         var params = {};
-        params["n"] = ${params.n};
-        params["e"] = ${params.e};
+        params["n"] = ${params.n ? params.n : 0};
+        params["e"] = ${params.e ? params.e : 0};
         params["m"] = $("textarea#m").val();
         $.getJSON(url, params,
             function(encodeResult){
@@ -107,7 +108,7 @@
 
     <g:if test="${!params.n && !params.e}">
         <p><g:link controller="key" action="random" class="btn btn-primary btn-large">
-      Generate Random &raquo;</g:link></p>
+      Generate Random Keys &raquo;</g:link></p>
     </g:if>
 
   </div>
