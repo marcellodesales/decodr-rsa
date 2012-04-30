@@ -3,7 +3,7 @@
       <title>Decode Encoded Messages</title>
       <meta name="layout" content="main"/>
 
-      <r:require modules="bootstrap, jquery, prettify, jqueryClipboard"/>
+      <r:require modules="bootstrap, jquery, prettify, jqueryclipboard"/>
 
      <script type="text/javascript">
       $(document).ready(function(){

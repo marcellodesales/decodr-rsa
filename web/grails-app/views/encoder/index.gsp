@@ -3,7 +3,7 @@
       <title>Encode Messages</title>
       <meta name="layout" content="main"/>
 
-      <r:require modules="bootstrap, jquery, prettify, jqueryClipboard"/>
+      <r:require modules="bootstrap, jquery, prettify, jqueryclipboard"/>
 
      <script type="text/javascript">
       $(document).ready(function(){
@@ -17,13 +17,13 @@
         $('div#encodedMessageArea, div#publicKeyToDisplay').hide();
 
         /** Adds the clipboard function to the button */
-        //$("input#copyEncodedMessageButton").zclip({
-        //    path: "${resource(dir: 'js/jquery', file: 'ZeroClipboard.swf')}",
-        //    copy: function() {
-        //        alert("Copied: " +  $(this).prev().val());
-        //       return $(this).prev().val();
-        //    }
-        //});
+//        $("#copyEncodedMessageButton").zclip({
+//            path: "${resource(dir: 'js/jquery', file: 'ZeroClipboard.swf')}",
+//            copy: function() {
+ //               alert("Copied: " +  $(this).prev().val());
+ //              return $(this).prev().val();
+ //           }
+ //       });
 
         $("textarea#encodedMessage").focus(function() {
             $this = $(this);
@@ -156,7 +156,10 @@
       </g:if>
       <g:else>
          <div class="alert alert-info">
-           <h4 class="alert-heading">Public Key</h4>
+           <h4 class="alert-heading">
+              <a href="#" rel="popover" data-original-title="Public Key" 
+                  data-content="Paste the entire key description like 'Publick Key (N,E) = (55471133, 7)'" >
+                  Public Key</a></h4>
            <input id="publicKeyToReplace" type="text" value="">
            <div id="publicKeyToDisplay"></div>
          </div>
@@ -196,7 +199,9 @@
         <g:form name="decodeForm" id="decodeForm" class="well" controller="decoder" action="index">
           <textarea id="encodedMessage" class="input-xlarge uneditable-textarea" rows="5" cols="50"></textarea>
           <BR/>
-          <!-- input id="copyEncodedMessageButton" class="btn btn-primary btn-medium" type="button" value="Copy to clipboard &raquo;" -->
+          <!--a id="copyEncodedMessageButton" class="btn btn-primary btn-medium">
+          Copy to clipboard &raquo;
+          </a-->
 
           <div id="decodeMessageGroup" class="control-group">
             <label class="control-label" for="m">Start Decoding - Enter Private Key D</label>
