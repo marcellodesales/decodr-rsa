@@ -8,4 +8,8 @@ modules = {
       resource url:'css/prettify.css'
       resource url:'js/prettify/prettify.js'
     }
+
+    jqueryClipboard {
+      resource url:'js/jquery/jquery.zclip.js'
+    }
 }

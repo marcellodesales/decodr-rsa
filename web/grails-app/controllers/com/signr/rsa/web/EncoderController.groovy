@@ -25,10 +25,11 @@ class EncoderController {
     def originalMessage = params.m.trim()
 
     def publicKey = keyService.makePublicKey(publicKeyN, publicKeyE)
-    RsaEncoder encoder = encoderService.getEncoder(originalMessage, publicKey)
+    def encoder = encoderService.getEncoder(originalMessage, publicKey)
 
     render(contentType: "text/json") {
-      [originalMessage: params.m, publicKey:[n:params.n, e:params.e], 
+      [originalMessage: originalMessage, encodedMessage: encoder.encryptedMessage,
+        publicKey:[n:publicKeyE, e:publicKeyN], 
         at: System.currentTimeMillis(), 
         computationLog: 
           encoder.getLog().each { logEntry ->

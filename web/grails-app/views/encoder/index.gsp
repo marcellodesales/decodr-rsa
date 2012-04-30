@@ -2,11 +2,40 @@
    <head>
       <meta name="layout" content="main"/>
 
-      <r:require modules="bootstrap, jquery, prettify"/>
+      <r:require modules="bootstrap, jquery, prettify, jqueryClipboard"/>
 
      <script type="text/javascript">
       $(document).ready(function(){
-        $('#submitComputation').click(loadLogs);
+
+        /** Register the click of the button to encode the message. */
+        $('input#submitComputationButton').click(loadLogs);
+
+        $('input#submitDecodeButton').click(submitDecoderForm);
+
+        /** Hide the result textarea */
+        $('div#encodedMessageArea').hide();
+
+        /** Adds the clipboard function to the button */
+        //$("input#copyEncodedMessageButton").zclip({
+        //    path: "${resource(dir: 'js/jquery', file: 'ZeroClipboard.swf')}",
+        //    copy: function() {
+        //        alert("Copied: " +  $(this).prev().val());
+        //       return $(this).prev().val();
+        //    }
+        //});
+
+        $("textarea#encodedMessage").focus(function() {
+            $this = $(this);
+            $this.select();
+
+            // Work around Chrome's little problem
+            $this.mouseup(function() {
+                // Prevent further mouseup intervention
+                $this.unbind("mouseup");
+                return false;
+            });
+        });
+
       });
 
       /**
@@ -35,7 +64,10 @@
                for(var i = 0 ; i < encodeResult.computationLog.length; i++) {
                    myHTMLString += makeHTMLLogEntry(encodeResult.computationLog[i], i);
                }
-              $('pre#logCalculation').html(myHTMLString)
+              $('pre#logCalculation').html(myHTMLString);
+              $('textarea#encodedMessage').val(encodeResult.encodedMessage);
+              $('div#encodedMessageArea').show();
+              $("textarea#encodedMessage").focus();
             }
         );
         var div = $("textarea#m").parents("div.control-group");
@@ -47,6 +79,13 @@
        */
       function makeHTMLLogEntry(logEntry, index) {
          return "<ol class=\"linenums\"><li class=\"L"+index+"\"><span class=\"kwd\">"+logEntry+"</span></li></ol>";
+      }
+
+      /** Submits the decoder form */
+      function submitDecoderForm() {
+         var encodedMessage = $('textarea#encodedMessage').val();
+         $('form#decodeForm').find('input[name="m"]').attr("value", encodedMessage);
+         $('form#decodeForm').submit();
       }
     </script>
 
@@ -100,7 +139,7 @@
                 <input type="hidden" name="e" value="${params.e}">
             </div>
           </div>
-          <input type="button" id="submitComputation" class="btn btn-primary btn-medium" value="Encode Message &raquo;">
+          <input id="submitComputationButton" class="btn btn-primary btn-medium" type="button"  value="Encode Message &raquo;">
         </g:form>
      </g:else>
     </div><!--/span-->
@@ -118,12 +157,33 @@
   </div><!--/row-->
   
   <div class="row-fluid">
+    <div id="encodedMessageArea" class="span4">
+        <h2>Encoded message...</h2>
+        <g:form name="decodeForm" id="decodeForm" class="well" controller="decoder" action="decode">
+          <textarea id="encodedMessage" class="input-xlarge uneditable-textarea" rows="5" cols="50"></textarea>
+          <BR/>
+          <!-- input id="copyEncodedMessageButton" class="btn btn-primary btn-medium" type="button" value="Copy to clipboard &raquo;" -->
+
+          <div id="decodeMessageGroup" class="control-group">
+            <label class="control-label" for="m">Start Decoding - Enter Private Key D</label>
+            <div class="control">
+                <input type="text" class="input-xlarge" name="d" id="d">
+                <input type="hidden" name="n" value="${params.n}">
+                <input type="hidden" name="e" value="${params.e}">
+                <input type="hidden" name="m" value="">
+            </div>
+          </div>
+          <g:actionSubmit id="submitDecodeButton" class="btn btn-primary btn-medium" type="button"  value="Decode Encoded Message &raquo;" />
+        </g:form>
+    </div>
+
     <div class="span8">
         <h2>Encoding a message</h2>
         <pre id="logCalculation" class="prettyprint linenums prettyprinted">
           The result of calculation will be displayed here...
         </pre>
     </div>
+
   </div>
 </body>
 </html>
