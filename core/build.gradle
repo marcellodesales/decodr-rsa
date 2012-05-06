@@ -41,10 +41,9 @@ sourceCompatibility = 1.7
  * Version of the jar generated for the core.
  * http://semver.org/
  */
-version = 1.1.1
+version = "1.1.1"
 
-archivesBaseName = "com.signr.rsa"
-def mainClient = archivesBaseName + ".core.Rsa"
+archivesBaseName = "decodr-core"
 def jarName = "$archivesBaseName-$version" + ".jar"
 
 /*
@@ -53,36 +52,14 @@ def jarName = "$archivesBaseName-$version" + ".jar"
  */
 jar {
    manifest {
-       attributes 'Implementation-Title': 'RSA Signr',
-                  'Implementation-Version': version, 'Created-By': "Marcello de Sales",
-                  'Main-Class': mainClient
+       attributes 'Implementation-Title': 'DecodR Core',
+                  'Implementation-Version': version, 'Created-By': "Marcello de Sales"
    }
 
    doLast {
-     // adding the dependency of libraries into the runtime lib dir for execution of main class.
-     def dependsFileName
-     sourceSets.main.runtimeClasspath.each{ jarDependencyFile ->
-       if (jarDependencyFile.absolutePath.contains("guava")) {
-         dependsFileName = jarDependencyFile.name
-         ant.copy(file: jarDependencyFile.absolutePath, todir: "$buildDir/libs")
-       }
-     }
-
-     ant.echo(message: "java -cp $buildDir/libs/$jarName:$buildDir/libs/$dependsFileName $mainClient \$1",
-       file: "run.sh")
-     ant.chmod(file: "run.sh", perm: "+x")
-
-     println ""
-     println "##############################"
-     println "WOOOHOOO! FINISHED!"
-     println "You are ready to run the command \"./run.sh --help\" for instructions!"
-     println "##############################"
+     ant.echo(message: "Copying $jarName to ../web/lib")
+     ant.copy(file: "$buildDir/libs/$jarName", todir: "$buildDir/../../web/lib")
    }
-}
-
-task copyToWebLib(description: "Copies the generated core jar to the web/lib") {
-  ant.echo(message: "After generating the jar, copy it to ../web/lib")
-  ant.copy(file: "$buildDir/libs/$jarName", todir: "$buildDir/../../web/lib")
 }
 
 clean {
