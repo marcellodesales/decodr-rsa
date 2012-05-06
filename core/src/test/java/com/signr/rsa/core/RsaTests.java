@@ -15,7 +15,7 @@ public class RsaTests {
     RsaPublicKey publicKey = marcellosRsa.getPublicKey();
     assertNotNull("A public key must been constructed.", publicKey);
 
-    String inputMessage = "Marcello de Sales: Passion for Software Engineering";
+    String inputMessage = "Marcello Alves de Sales Junior";
 
     RsaEncoder encoder = RsaEncoder.newInstance(inputMessage, publicKey);
     assertNotNull("The encoder for the given RSA must be constructed.", encoder);
@@ -40,6 +40,29 @@ public class RsaTests {
     String decodedMessage = decoder.getOriginalMessage();
     assertNotNull("The encoder should have received the original message.", decodedMessage);
     assertEquals("The received message should be the same as the input.", inputMessage, decodedMessage);
+  }
+
+  @Test
+  public void testWithSingleAndRepeatedCharactersWith0() {
+    RsaPublicKey rpk = RsaPublicKey.newInstance(25985731L, 5L);
+    assertNotNull("The key must be created", rpk);
+
+    assertEquals("The value of the key must exist", 25985731L, rpk.getKeyN());
+    assertEquals("The value of the key must exist", 5L, rpk.getKeyE());
+
+    String msg = "ddsokdos oskdoskdosk oksd";
+    RsaEncoder encoder = RsaEncoder.newInstance(msg, rpk);
+    assertNotNull(encoder.getEncryptedMessage());
+
+    assertEquals("The value of the key must exist", msg, encoder.getOriginalMessage());
+    assertEquals("The value of the key must exist", 5L, rpk.getKeyE());
+
+    RsaPrivateKey rppk = RsaPrivateKey.getInstance(rpk, 10389053L);
+    RsaDecoder decoder = RsaDecoder.newInstance(encoder.getEncryptedMessage(), rppk);
+    String decoded = decoder.getOriginalMessage();
+
+    assertEquals("The original message was not decoded correctly.", msg, decoded);
+
   }
 
 }

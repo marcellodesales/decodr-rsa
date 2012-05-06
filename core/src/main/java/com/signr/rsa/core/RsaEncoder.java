@@ -105,10 +105,11 @@ public final class RsaEncoder {
    * @return the ASCII representation a string
    */
   private String encodeStringToAscii(String widestring) {
-    StringBuffer ascii = new StringBuffer();
+    StringBuilder ascii = new StringBuilder();
     for (int i = 0; i < widestring.length(); i++) {
       ascii.append((int) widestring.charAt(i) + 100);
     }
+    System.out.println("" + ascii);
     return ascii.toString();
   }
 
@@ -116,37 +117,52 @@ public final class RsaEncoder {
    * Returns the set of blocks of the ASCII representation in a random way 1241355334 =>
    * [1241][355][3][34]. It can't begin with 0's.
    */
-  private List<Integer> getAsciiBlocks(String asciiM) {
-    int i, messageLength;
-    String asciiMessage = asciiM;
+  private List<Integer> getAsciiBlocks(String asciiMessage) {
+    int copyLength = -1;
     List<Integer> blocks = new ArrayList<>();
-    String stringN = new String(new Double(this.publicKey.getKeyN()).toString());
-    int blockLength = stringN.length() - 3;
+    String stringN = String.valueOf(this.publicKey.getKeyN());
+    int maxBlockLength = stringN.length() - 3;
 
     while (asciiMessage.length() > 0) {
-      messageLength = asciiMessage.length();
+      int initialSize =
+          asciiMessage.length() <= maxBlockLength ? asciiMessage.length() : maxBlockLength;
+      String potentialBlock = asciiMessage.substring(0, initialSize);
+      int $0blockIndex = potentialBlock.indexOf("00"); // blocks like 20010
+      if ($0blockIndex > -1) {
+        potentialBlock = asciiMessage.substring(0, $0blockIndex + 2);
 
-      i = Algebra.SINGLETON.getARandomInteger(blockLength); // uses n +1
-
-      if (i > messageLength) {
-        i = messageLength;
-      }
-      if (messageLength != i) {
-        while (asciiMessage.charAt(i) == '0')
-          i++;
-      }
-
-      String toBeCopied = asciiMessage.substring(0, i);
-      if (Integer.parseInt(toBeCopied) > this.publicKey.getKeyN()) { // use n
-        i--;
-        while (asciiMessage.charAt(i) == '0') {
-          i--;
+      } else {
+        $0blockIndex = potentialBlock.indexOf("0"); // blocks like 51120
+        if ($0blockIndex > -1) {
+          potentialBlock = asciiMessage.substring(0, $0blockIndex + 1);
+          if (asciiMessage.length() > maxBlockLength) {
+            if (asciiMessage.charAt($0blockIndex + 1) == '0') { // 51120 03992
+              copyLength = Algebra.SINGLETON.getARandomInteger(maxBlockLength - 2);
+              potentialBlock = asciiMessage.substring(0, copyLength);
+            }
+          }
+        }
+        if (asciiMessage.length() <= maxBlockLength + 1) {
+          if (asciiMessage.endsWith("0")) { // end of the string with ending 0s, smaller blocks
+            copyLength = Algebra.SINGLETON.getARandomInteger(asciiMessage.length()-3);
+            potentialBlock = asciiMessage.substring(0, copyLength);
+          }
         }
       }
+      if (!potentialBlock.contains("0")) {
+        copyLength = Algebra.SINGLETON.getARandomInteger(maxBlockLength); // just get a random block
 
-      String block = asciiMessage.substring(0, i);
-      asciiMessage = asciiMessage.substring(i, asciiMessage.length());
-      blocks.add(new Integer(block));
+        // when the string is smaller than the largest block
+        if (copyLength > asciiMessage.length()) {
+          copyLength = asciiMessage.length();
+        }
+        potentialBlock = asciiMessage.substring(0, copyLength);
+      }
+      if (copyLength == -1) { // if nothing applied
+        copyLength = 0;
+      }
+      asciiMessage = asciiMessage.substring(potentialBlock.length(), asciiMessage.length());
+      blocks.add(new Integer(potentialBlock));
     }
     return blocks;
   }
@@ -170,12 +186,13 @@ public final class RsaEncoder {
   /**
    * Returns the set of encrypted blocks of the ascii representation applying the Power Module N
    * algorithm Coded blocks: [1241][355][3][34] ==> Encrypted Final message: 343434-43552-43544-3435
+   * http://en.wikipedia.org/wiki/Modular_arithmetic
    * 
    * @param codedBlocks is the list of coded blocks to be encrypted
    * @return the encrypted message based on the Power Module N algorithm based on the coded blocks
    */
   private String encryptBlocks(List<Integer> codedBlocks) {
-    log.add("Bloco(x) = x ^ E mod N");
+    log.add("Block(x) = x ^ E mod N");
     log.add("");
 
     double encryptedBlock;

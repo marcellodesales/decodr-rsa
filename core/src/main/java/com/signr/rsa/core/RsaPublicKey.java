@@ -107,7 +107,7 @@ public final class RsaPublicKey {
    */
   private long generateKeyE() {
 
-    this.log.add(LOG_ARROW + "FI = (P-1) * (Q-1); FI = " + DECIMAL_FORMATTER.format(this.fi));
+    this.log.add(LOG_ARROW + "ϕ(N) = (P-1) * (Q-1); ϕ(N) = " + DECIMAL_FORMATTER.format(this.fi));
     this.log.add("");
     this.log.add(LOG_ARROW + "Calculating (E)");
 

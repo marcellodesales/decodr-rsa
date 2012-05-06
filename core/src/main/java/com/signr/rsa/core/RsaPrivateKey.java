@@ -70,9 +70,9 @@ public final class RsaPrivateKey {
    * 
    * @param publicKey is the public key object
    * @param keyD is the private keyD
-   * @return a new instance of the RSAPrivateKey.
+   * @return a new instance of the RSAPrivateKey without calculating D.
    */
-  public static RsaPrivateKey newInstance(RsaPublicKey publicKey, double keyD) {
+  public static RsaPrivateKey getInstance(RsaPublicKey publicKey, double keyD) {
     return new RsaPrivateKey(publicKey, keyD);
   }
 
@@ -102,7 +102,7 @@ public final class RsaPrivateKey {
     double v3 = this.publicKey.getKeyE();
     double t1, t2, t3, vv, qq;
 
-    log.add("         Initializing (p1,p2,p3) = (1, 0 , FI(n))");
+    log.add("         Initializing (p1,p2,p3) = (1, 0 , ϕ(N))");
     log.add("         Initializing (q1,q2,q3) = (0, 1 ,  E  ))");
     log.add("         While q3 != 0");
     log.add("             quoc = p3 / q3");
@@ -144,7 +144,7 @@ public final class RsaPrivateKey {
     }
     this.log.add("");
     this.log
-        .add("         q3 is zero(0). Now, verify the value of p2. In case of negative, invert it by summing"
+        .add("         q3 is zero(0). Now, verify the value of q2. In case of negative, invert it by summing"
             + " it with FI. (represent the negative number of z(n) by a positive.)");
     this.log.add("");
     this.log.add("         u2 = " + DECIMAL_FORMATTER.format(u2) + ";");

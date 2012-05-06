@@ -38,9 +38,10 @@ dependencies {
 sourceCompatibility = 1.7
 
 /*
-* Version of the jar generated for the core.
-*/
-version = 1.0
+ * Version of the jar generated for the core.
+ * http://semver.org/
+ */
+version = 1.1.1
 
 archivesBaseName = "com.signr.rsa"
 def mainClient = archivesBaseName + ".core.Rsa"
