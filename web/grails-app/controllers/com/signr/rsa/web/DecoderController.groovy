@@ -14,7 +14,7 @@ class DecoderController {
   def decode() {
     if (!params.n || !params.e || !params.d || !params.m) {
       render(contentType: "text/json") {
-        [operation: "encoder/encode", 
+        [operation: "decoder/decode", 
           error: "Can't encode! You need to provide the public key (n,e), " +
             "private key (n,d) and the message (m)."
         ]
