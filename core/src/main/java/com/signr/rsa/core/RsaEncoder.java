@@ -109,7 +109,6 @@ public final class RsaEncoder {
     for (int i = 0; i < widestring.length(); i++) {
       ascii.append((int) widestring.charAt(i) + 100);
     }
-    System.out.println("" + ascii);
     return ascii.toString();
   }
 
@@ -127,9 +126,11 @@ public final class RsaEncoder {
       int initialSize =
           asciiMessage.length() <= maxBlockLength ? asciiMessage.length() : maxBlockLength;
       String potentialBlock = asciiMessage.substring(0, initialSize);
+      boolean hadZero = false;
       int $0blockIndex = potentialBlock.indexOf("00"); // blocks like 20010
       if ($0blockIndex > -1) {
         potentialBlock = asciiMessage.substring(0, $0blockIndex + 2);
+        hadZero = true;
 
       } else {
         $0blockIndex = potentialBlock.indexOf("0"); // blocks like 51120
@@ -141,15 +142,16 @@ public final class RsaEncoder {
               potentialBlock = asciiMessage.substring(0, copyLength);
             }
           }
+          hadZero = true;
         }
         if (asciiMessage.length() <= maxBlockLength + 1) {
-          if (asciiMessage.endsWith("0")) { // end of the string with ending 0s, smaller blocks
-            copyLength = Algebra.SINGLETON.getARandomInteger(asciiMessage.length()-3);
+          if (asciiMessage.endsWith("0")) { // end of the string with ending 0s
+            copyLength = Algebra.SINGLETON.getARandomInteger(asciiMessage.length() - 3);
             potentialBlock = asciiMessage.substring(0, copyLength);
           }
         }
       }
-      if (!potentialBlock.contains("0")) {
+      if (!hadZero && !potentialBlock.contains("0")) {
         copyLength = Algebra.SINGLETON.getARandomInteger(maxBlockLength); // just get a random block
 
         // when the string is smaller than the largest block

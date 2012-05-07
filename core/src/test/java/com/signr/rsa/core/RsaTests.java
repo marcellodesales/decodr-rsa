@@ -3,6 +3,7 @@ package com.signr.rsa.core;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RsaTests {
@@ -51,6 +52,28 @@ public class RsaTests {
     assertEquals("The value of the key must exist", 5L, rpk.getKeyE());
 
     String msg = "ddsokdos oskdoskdosk oksd";
+    RsaEncoder encoder = RsaEncoder.newInstance(msg, rpk);
+    assertNotNull(encoder.getEncryptedMessage());
+
+    assertEquals("The value of the key must exist", msg, encoder.getOriginalMessage());
+    assertEquals("The value of the key must exist", 5L, rpk.getKeyE());
+
+    RsaPrivateKey rppk = RsaPrivateKey.getInstance(rpk, 10389053L);
+    RsaDecoder decoder = RsaDecoder.newInstance(encoder.getEncryptedMessage(), rppk);
+    String decoded = decoder.getOriginalMessage();
+
+    assertEquals("The original message was not decoded correctly.", msg, decoded);
+  }
+  
+  @Test 
+  public void testWithSingleAndRepeatedCharactersWith02() {
+    RsaPublicKey rpk = RsaPublicKey.newInstance(25985731L, 5L);
+    assertNotNull("The key must be created", rpk);
+
+    assertEquals("The value of the key must exist", 25985731L, rpk.getKeyN());
+    assertEquals("The value of the key must exist", 5L, rpk.getKeyE());
+
+    String msg = "adadad adadadad ad  adad";
     RsaEncoder encoder = RsaEncoder.newInstance(msg, rpk);
     assertNotNull(encoder.getEncryptedMessage());
 

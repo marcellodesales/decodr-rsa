@@ -155,7 +155,6 @@ public final class RsaDecoder {
    */
   private String decodeAsciiMessage(String asciiMessage) {
     StringBuilder origem = new StringBuilder();
-    System.out.println(asciiMessage);
     while (asciiMessage.length() > 0) {
       String valueStr = asciiMessage.substring(0, 3);
       asciiMessage = asciiMessage.substring(3, asciiMessage.length());

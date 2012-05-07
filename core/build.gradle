@@ -41,7 +41,7 @@ sourceCompatibility = 1.7
  * Version of the jar generated for the core.
  * http://semver.org/
  */
-version = "1.1.1"
+version = "1.1.2"
 
 archivesBaseName = "decodr-core"
 def jarName = "$archivesBaseName-$version" + ".jar"
