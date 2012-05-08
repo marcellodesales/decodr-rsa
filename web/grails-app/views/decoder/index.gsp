@@ -3,11 +3,13 @@
       <title>Decode Encoded Messages</title>
       <meta name="layout" content="main"/>
 
-      <r:require modules="bootstrap, jquery, prettify, jqueryclipboard"/>
+      <r:require modules="bootstrap, jquery, prettify"/>
 
      <script type="text/javascript">
       $(document).ready(function(){
 
+        $().tooltip({placement: 'bottom'}) 
+       
         /** Register the click of the button to encode the message. */
         $('input#submitDecodeButton').click(loadLogs);
 

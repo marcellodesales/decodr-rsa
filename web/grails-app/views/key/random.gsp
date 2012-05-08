@@ -2,7 +2,7 @@
    <head>
       <meta name="layout" content="main"/>
       <r:require modules="bootstrap, prettify"/>
-   </head>
+  </head>
 <body>
 
  <h1>Random RSA Keys</h1>
@@ -16,7 +16,7 @@
   <div class="row-fluid">
     <div class="span4">
       <div class="alert alert-info">
-        <h4 class="alert-heading">Public Key</h4>
+        <h4 class="alert-heading">Public Key <decodr:rsaKey key="${randomRsa.publicKey}" format="copy" bgcolor="#d9edf7" /></h4>
         <decodr:rsaKey key="${randomRsa.publicKey}" />
       </div>
     </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="span4">
       <div class="alert alert-error">
-        <h4 class="alert-heading">Private Key</h4> 
+        <h4 class="alert-heading">Private Key <decodr:rsaKey key="${randomRsa.privateKey}" format="copy" bgcolor="#f2dede" /></h4> 
         <decodr:rsaKey key="${randomRsa.privateKey}" />
       </div>
     </div>

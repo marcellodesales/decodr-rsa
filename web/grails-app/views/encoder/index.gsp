@@ -3,11 +3,13 @@
       <title>Encode Messages</title>
       <meta name="layout" content="main"/>
 
-      <r:require modules="bootstrap, jquery, prettify, jqueryclipboard"/>
+      <r:require modules="bootstrap, jquery, prettify"/>
 
      <script type="text/javascript">
       $(document).ready(function(){
 
+    	  $().tooltip({placement: 'bottom'}) 
+    	  
         /** Register the click of the button to encode the message. */
         $('input#submitComputationButton').click(loadLogs);
 
@@ -15,15 +17,6 @@
 
         /** Hide the result textarea */
         $('div#encodedMessageArea, div#publicKeyToDisplay').hide();
-
-        /** Adds the clipboard function to the button */
-//        $("#copyEncodedMessageButton").zclip({
-//            path: "${resource(dir: 'js/jquery', file: 'ZeroClipboard.swf')}",
-//            copy: function() {
- //               alert("Copied: " +  $(this).prev().val());
- //              return $(this).prev().val();
- //           }
- //       });
 
         $("textarea#encodedMessage").focus(function() {
             $this = $(this);
@@ -157,8 +150,9 @@
       <g:else>
          <div class="alert alert-info">
            <h4 class="alert-heading">
-              <a href="#" rel="popover" data-original-title="Public Key" 
-                  data-content="Paste the entire key description like 'Publick Key (N,E) = (55471133, 7)'" >
+              <a href="#" data-original-title="Public Key" 
+                  data-content="Paste the entire key description like 'Publick Key (N,E) = (55471133, 7)'"
+                  rel="tooltip">
                   Public Key</a></h4>
            <input id="publicKeyToReplace" type="text" value="">
            <div id="publicKeyToDisplay"></div>
