@@ -9,7 +9,4 @@ modules = {
       resource url:'js/prettify/prettify.js'
     }
 
-    jqueryclipboard {
-      resource url:'js/jquery/jquery.zclip.js', disposition:'head'
-    }
 }
