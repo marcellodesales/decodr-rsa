@@ -12,6 +12,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="lib" path="lib/com.signr.rsa-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/decodr-core-1.1.2.jar"/>
 	<classpathentry kind="src" path=".link_to_grails_plugins/hibernate-2.0.3/grails-app/i18n">
 		<attributes>
 			<attribute name="com.springsource.sts.grails.core.SOURCE_FOLDER" value="true"/>

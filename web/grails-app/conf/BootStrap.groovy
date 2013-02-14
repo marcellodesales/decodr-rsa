@@ -21,7 +21,7 @@ class BootStrap {
           // do something in production
       }
       development {
-          // do something only in development
+          println "Running on dev";
       }
     }
   }
