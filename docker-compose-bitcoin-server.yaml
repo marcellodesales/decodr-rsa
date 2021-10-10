@@ -1,0 +1,38 @@
+networks:
+  supercash-blockchain-network:
+
+services:
+
+  bitcoin-node:
+    image: marcellodesales/bitcoin-node
+
+    # https://hub.docker.com/r/ruimarinho/bitcoin-core/#using-rpcauth-for-remote-authentication
+    build:
+      context: bitcoin
+
+    container_name: bitcoin-node
+    networks:
+      - supercash-blockchain-network
+
+    command:
+      -printtoconsole
+      # https://en.bitcoin.it/wiki/Signet
+      -signet=1
+      # https://en.bitcoin.it/wiki/Testnet
+      #-testnet=1
+      # https://en.bitcoin.it/wiki/Regression_test_mode
+      #-regtest=1
+
+    environment:
+      BITCOIN_DATA: /var/lib/bitcoin-core
+    
+    volumes:
+      - ./bitcoin/conf:/var/lib/bitcoin-core
+
+    ports:
+      # JSON-RPC/REST
+      # curl --data-binary '{"jsonrpc":"1.0","id":"1","method":"getnetworkinfo","params":[]}' \
+      #                     http://foo:q...=@127.0.0.1:18443
+      - 18443:18443
+      # P2P 
+      - 18444:18444

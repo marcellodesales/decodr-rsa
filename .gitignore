@@ -14,3 +14,7 @@ lib-cov
 .project
 .settings/
 target/
+
+bitcoin/conf/regtest/
+bitcoin/conf/signet/
+bitcoin/conf/testnet3/
